@@ -1,0 +1,154 @@
+---
+title: "QABot for Python Shiny"
+author: "<br><br><br><strong>Deepsha Menghani</strong><br>"
+execute: 
+  echo: true
+format: 
+  revealjs:
+    width: 1600
+    height: 900
+    theme: "style.scss"
+    highlight-style: vim-dark
+    code-overflow: wrap
+    # footer: "[{{< fa solid display >}}  github.com/deepshamenghani/shinypython_meetup](https://github.com/deepshamenghani/shinypython_meetup) [{{< fa brands mastodon >}} @deepshamenghani](https://fosstodon.org/@deepsha)"
+    link-external-newwindow: true
+    df-print: kable
+from: markdown+emoji
+---
+
+
+## Who am I
+
+::: columns
+::: {.column width="50%"}
+Data Scientist manager at Microsoft.....
+
+![](images/DeepshaMenghani.png){width="75%" fig-align="center" fig-alt="Self portrait."}
+:::
+
+::: {.column width="50%"}
+:::
+:::
+
+
+## The biggest career transition of my life!
+
+::: columns
+::: {.column width="50%"}
+DS manager at Microsoft.....
+
+![](images/DeepshaMenghani.png){width="75%" fig-align="center" fig-alt="Self portrait."}
+:::
+
+::: {.column width="50%"}
+And a parent as of this year!
+
+![](images/fam.jpg){width="70%" fig-align="center" fig-alt="Deepsha's puppy and baby hanging."}
+:::
+:::
+
+# Let's talk Shiny
+
+## Shiny: Started with R and now we Pythoning!
+
+*[https://shiny.posit.co/py/](https://shiny.posit.co/py/)* <br><br>
+
+![](images/shinypython.png){width="80%" fig-align="center" fig-alt="Shiny python dashboard example"}
+
+# Who here has heard about ChatGPT?
+#
+![](images/chatgptsun_gif.gif){width="100%" fig-align="center" fig-alt="Shiny python dashboard example"}
+
+## Let's imagine such a chatbot in our Shiny application
+
+::: columns
+::: {.column width="50%"}
+![](images/shinyapp.gif){width="100%" fig-align="center" fig-alt="Shiny python dashboard example"}
+:::
+
+::: {.column width="50%"}
+:::
+:::
+
+
+## Steps to build it
+::: columns
+::: {.column width="50%"}
+![](images/shinyapp.gif){width="100%" fig-align="center" fig-alt="Shiny python dashboard example"}
+:::
+::: {.column width="50%"}
+::: {.incremental}
+1. Set up the Python environment
+2. Create an OpenAI account
+3. Build the chatbot
+4. Develop the application
+:::
+:::
+:::
+
+# 1. Set up the Python environment
+
+## Setting up environment
+
+<br>
+
+::: {.incremental}
+
+1. Install Shiny for Python extension (For VSCode)
+2. Create a virtual environment for your project (just best practice)
+3. Install the required packages "pip install shiny openai python-dotenv" 
+
+:::
+
+# 2. Create an OpenAI account
+
+## Creating an account
+
+Go to https://platform.openai.com/
+
+![](images/openai_platform.png){width="100%" fig-align="center" fig-alt="Sopen ai platform"}
+
+
+## Getting the API key 
+
+::: {.fragment}
+![](images/openai_apikeypage.png){width="100%" fig-align="center" fig-alt="openai api key"}
+
+:::
+
+## 
+
+::: {.fragment}
+![](images/guard-this-shit-with-your-life-always-do.gif){width="100%" fig-align="center" fig-alt="guard it"}
+
+:::
+
+
+# 3. Build the chatbot
+
+## Accessing the API key
+
+
+## 1.0 The code structure of a basic app
+
+::: columns
+::: {.column width="50%"}
+*.env file* <br>
+
+```{python eval=FALSE}
+OPENAI_API_KEY = "sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+```
+:::
+
+::: {.column width="50%"}
+*.gitignore file* <br>
+
+```{python eval=FALSE}
+.env
+
+```
+:::
+
+:::
+
+
