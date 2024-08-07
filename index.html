@@ -517,22 +517,15 @@
 <img data-src="images/openai_platform.png" class="quarto-figure quarto-figure-center r-stretch" style="width:100.0%" alt="Sopen ai platform"></section>
 <section id="get-the-api-key" class="slide level2">
 <h2>Get the API key</h2>
-<p>::: <img data-src="images/openai_apikeypage.png" class="quarto-figure quarto-figure-center" style="width:100.0%" alt="openai api key"> :::</p>
-</section>
+
+<img data-src="images/openai_apikeypage.png" class="quarto-figure quarto-figure-center r-stretch" style="width:100.0%" alt="openai api key"></section>
 <section id="section-1" class="slide level2">
 <h2></h2>
-<div class="fragment">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="images/guard-this-shit-with-your-life-always-do.gif" class="quarto-figure quarto-figure-center" style="width:100.0%" alt="guard it"></p>
-</figure>
-</div>
-</div>
-</section>
+
+<img data-src="images/guard-this-shit-with-your-life-always-do.gif" class="quarto-figure quarto-figure-center r-stretch" style="width:100.0%" alt="guard it"></section>
 <section id="safeguard-api-key" class="slide level2">
 <h2>Safeguard API key</h2>
-<br>
-<hr>
+<p><br></p>
 <div class="fragment">
 <p><em>env file</em> <br></p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode numberSource {md} number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href=""></a>OPENAI_API_KEY = "sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxx"</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -545,8 +538,8 @@
 <hr>
 <div class="fragment">
 <p><em>python file</em> <br></p>
-<div id="3c8350bb" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href=""></a><span class="im">import</span> os</span>
+<div id="10518a63" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb4" data-code-line-numbers="|1-3|4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href=""></a><span class="im">import</span> os</span>
 <span id="cb4-2"><a href=""></a><span class="im">import</span> dotenv</span>
 <span id="cb4-3"><a href=""></a></span>
 <span id="cb4-4"><a href=""></a>dotenv.load_dotenv()</span>
@@ -559,39 +552,41 @@
 <h1>3. Build the chatbot</h1>
 
 </section>
-<section id="access-the-api-key" class="slide level2">
-<h2>Access the API key</h2>
-<br>
-<hr>
-<div class="fragment">
-<p><em>env file</em> <br></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource {md} number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a href=""></a>OPENAI_API_KEY = "sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxx"</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<hr>
-<div class="fragment">
-<p><em>gitignore file</em> <br></p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource {md} number-lines code-with-copy"><code class="sourceCode"><span id="cb6-1"><a href=""></a>.env</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<hr>
+<section id="connect-with-openai-client" class="slide level2">
+<h2>Connect with OpenAI client</h2>
+<p><br></p>
 <div class="fragment">
 <p><em>conversationchatbot.py file</em> <br></p>
-<div id="5660d3cb" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href=""></a><span class="im">import</span> os</span>
-<span id="cb7-2"><a href=""></a><span class="im">import</span> dotenv</span>
-<span id="cb7-3"><a href=""></a></span>
-<span id="cb7-4"><a href=""></a>dotenv.load_dotenv()</span>
-<span id="cb7-5"><a href=""></a>api_key<span class="op">=</span>os.getenv(<span class="st">'OPENAI_API_KEY'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="20a9fb90" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb5" data-code-line-numbers="|1-4|5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href=""></a><span class="im">import</span> os</span>
+<span id="cb5-2"><a href=""></a><span class="im">import</span> dotenv</span>
+<span id="cb5-3"><a href=""></a></span>
+<span id="cb5-4"><a href=""></a>dotenv.load_dotenv()</span>
+<span id="cb5-5"><a href=""></a>api_key<span class="op">=</span>os.getenv(<span class="st">'OPENAI_API_KEY'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-</section></section>
-<section id="section-2" class="title-slide slide level1 center">
-<h1></h1>
+</section>
+<section id="the-code-structure-of-a-basic-app" class="slide level2">
+<h2>1.0 The code structure of a basic app</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><em>Shiny create -t basic-app</em> <br></p>
+<div id="a537c35d" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb6" data-code-line-numbers="|1|3-7|9-12|14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href=""></a><span class="im">import</span> os</span>
+<span id="cb6-2"><a href=""></a><span class="im">import</span> dotenv</span>
+<span id="cb6-3"><a href=""></a></span>
+<span id="cb6-4"><a href=""></a>dotenv.load_dotenv()</span>
+<span id="cb6-5"><a href=""></a>api_key<span class="op">=</span>os.getenv(<span class="st">'OPENAI_API_KEY'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:50%;">
+<p><br> <img data-src="images/DeepshaMenghani.png" class="quarto-figure quarto-figure-center" style="width:100.0%" alt="Shiny python dashboard example"></p>
+</div></div>
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
 </div>
 </div>
-</section>
+</section></section>
     </div>
   </div>
 
