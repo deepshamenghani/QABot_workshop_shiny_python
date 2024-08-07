@@ -16,10 +16,9 @@ format:
 from: markdown+emoji
 ---
 
-
 ## Who am I
 
-::: columns
+::::: columns
 ::: {.column width="50%"}
 Data Scientist manager at Microsoft.....
 
@@ -28,12 +27,11 @@ Data Scientist manager at Microsoft.....
 
 ::: {.column width="50%"}
 :::
-:::
-
+:::::
 
 ## The biggest career transition of my life!
 
-::: columns
+::::: columns
 ::: {.column width="50%"}
 DS manager at Microsoft.....
 
@@ -45,46 +43,49 @@ And a parent as of this year!
 
 ![](images/fam.jpg){width="70%" fig-align="center" fig-alt="Deepsha's puppy and baby hanging."}
 :::
-:::
+:::::
 
 # Let's talk Shiny
 
 ## Shiny: Started with R and now we Pythoning!
 
-*[https://shiny.posit.co/py/](https://shiny.posit.co/py/)* <br><br>
+[*https://shiny.posit.co/py/*](https://shiny.posit.co/py/) <br><br>
 
 ![](images/shinypython.png){width="80%" fig-align="center" fig-alt="Shiny python dashboard example"}
 
 # Who here has heard about ChatGPT?
-#
+
+# 
+
 ![](images/chatgptsun_gif.gif){width="100%" fig-align="center" fig-alt="Shiny python dashboard example"}
 
 ## Let's imagine such a chatbot in our Shiny application
 
-::: columns
+::::: columns
 ::: {.column width="50%"}
 ![](images/shinyapp.gif){width="100%" fig-align="center" fig-alt="Shiny python dashboard example"}
 :::
 
 ::: {.column width="50%"}
 :::
-:::
-
+:::::
 
 ## Steps to build it
-::: columns
+
+:::::: columns
 ::: {.column width="50%"}
 ![](images/shinyapp.gif){width="100%" fig-align="center" fig-alt="Shiny python dashboard example"}
 :::
-::: {.column width="50%"}
-::: {.incremental}
-1. Set up the Python environment
-2. Create an OpenAI account
-3. Build the chatbot
-4. Develop the application
+
+:::: {.column width="50%"}
+::: incremental
+1.  Set up the Python environment
+2.  Create an OpenAI account
+3.  Build the chatbot
+4.  Develop the application
 :::
-:::
-:::
+::::
+::::::
 
 # 1. Set up the Python environment
 
@@ -92,63 +93,88 @@ And a parent as of this year!
 
 <br>
 
-::: {.incremental}
-
-1. Install Shiny for Python extension (For VSCode)
-2. Create a virtual environment for your project (just best practice)
-3. Install the required packages "pip install shiny openai python-dotenv" 
+::: incremental
+1.  Create a virtual environment for your project (just best practice)
+2.  Install the required packages 
+    ```{md}
+    pip install shiny openai python-dotenv
+    ```
+3. Install Shiny for Python extension (For VSCode)
 
 :::
 
 # 2. Create an OpenAI account
 
-## Creating an account
+## Create an account
 
 Go to https://platform.openai.com/
 
 ![](images/openai_platform.png){width="100%" fig-align="center" fig-alt="Sopen ai platform"}
 
+## Get the API key
 
-## Getting the API key 
-
-::: {.fragment}
+::: 
 ![](images/openai_apikeypage.png){width="100%" fig-align="center" fig-alt="openai api key"}
-
 :::
 
 ## 
 
-::: {.fragment}
+::: fragment
 ![](images/guard-this-shit-with-your-life-always-do.gif){width="100%" fig-align="center" fig-alt="guard it"}
-
 :::
 
+## Safeguard API key
 
-# 3. Build the chatbot
+<br>
 
-## Accessing the API key
+::: {.fragment}
+*env file* <br>
 
-
-## 1.0 The code structure of a basic app
-
-::: columns
-::: {.column width="50%"}
-*.env file* <br>
-
-```{python eval=FALSE}
+```{md}
 OPENAI_API_KEY = "sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 ```
 :::
 
-::: {.column width="50%"}
-*.gitignore file* <br>
+<hr>
 
-```{python eval=FALSE}
+::: {.fragment}
+*gitignore file* <br>
+
+```{md}
 .env
-
 ```
 :::
 
+<hr>
+
+::: {.fragment}
+*python file* <br>
+
+```{python eval=FALSE}
+import os
+import dotenv
+
+dotenv.load_dotenv()
+api_key=os.getenv('OPENAI_API_KEY')
+```
 :::
 
+# 3. Build the chatbot
 
+## Connect with OpenAI client
+
+<br>
+
+::: {.fragment}
+*conversationchatbot.py file* <br>
+
+```{python eval=FALSE}
+import os
+import dotenv
+
+dotenv.load_dotenv()
+api_key=os.getenv('OPENAI_API_KEY')
+```
+:::
+
+# 
