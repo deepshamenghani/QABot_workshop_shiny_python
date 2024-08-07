@@ -1,0 +1,17 @@
+---
+title: "QABot for Python Shiny"
+author: "<br><br><br><strong>Deepsha Menghani</strong><br>"
+execute: 
+  echo: true
+format: 
+  revealjs:
+    width: 1600
+    height: 900
+    theme: "style.scss"
+    highlight-style: vim-dark
+    code-overflow: wrap
+    # footer: "[{{< fa solid display >}}  github.com/deepshamenghani/shinypython_meetup](https://github.com/deepshamenghani/shinypython_meetup) [{{< fa brands mastodon >}} @deepshamenghani](https://fosstodon.org/@deepsha)"
+    link-external-newwindow: true
+    df-print: kable
+from: markdown+emoji
+---
