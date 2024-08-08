@@ -538,7 +538,7 @@
 <hr>
 <div class="fragment">
 <p><em>python file</em> <br></p>
-<div id="0ce33935" class="cell" data-execution_count="1">
+<div id="c21a7bdd" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb4" data-code-line-numbers="|1-3|4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href=""></a><span class="im">import</span> os</span>
 <span id="cb4-2"><a href=""></a><span class="im">import</span> dotenv</span>
 <span id="cb4-3"><a href=""></a></span>
@@ -557,7 +557,7 @@
 <p><br></p>
 <div class="fragment">
 <p><em>conversationchatbot.py file</em> <br></p>
-<div id="d4cfb2ce" class="cell" data-execution_count="2">
+<div id="0c393f30" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb5" data-code-line-numbers="|1|6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href=""></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
 <span id="cb5-2"><a href=""></a><span class="im">import</span> os</span>
 <span id="cb5-3"><a href=""></a><span class="im">import</span> dotenv</span>
@@ -583,7 +583,7 @@
 <h2>Build the conversation input for OpenAI call</h2>
 <div class="fragment">
 <p><em>Assign a role to the chatbot</em> <br></p>
-<div id="2b43d284" class="cell" data-execution_count="3">
+<div id="863deb10" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href=""></a>conversation <span class="op">=</span> [{<span class="st">"role"</span>: <span class="st">"system"</span>, <span class="st">"content"</span>: <span class="st">"You are an assistant."</span>}]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
@@ -596,7 +596,7 @@
 </div>
 <div class="fragment">
 <p><em>Update the conversation to include the user question</em> <br></p>
-<div id="33bb8922" class="cell" data-execution_count="4">
+<div id="2c17a5b0" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7" data-code-line-numbers="1|2|"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href=""></a>inputquestion <span class="op">=</span> <span class="st">"Where is the moon?"</span></span>
 <span id="cb7-2"><a href=""></a>conversation.append({<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: inputquestion})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -613,35 +613,33 @@
 <h2>Send API call with conversation context to get response</h2>
 <div class="fragment">
 <p><em>Chat completion format</em> <br></p>
-<div id="3aeb3ee0" class="cell" data-execution_count="5">
+<div id="52f633e3" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb8" data-code-line-numbers="|1|2|3|"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href=""></a>response <span class="op">=</span> client.chat.completions.create(</span>
 <span id="cb8-2"><a href=""></a>        model<span class="op">=</span><span class="st">"gpt-3.5-turbo"</span>,</span>
 <span id="cb8-3"><a href=""></a>        messages<span class="op">=</span>conversation</span>
 <span id="cb8-4"><a href=""></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-<p><br></p>
 <div class="fragment">
-<div id="711ccb09" class="cell" data-execution_count="6">
+<div id="a0d2f554" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href=""></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>response<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>ChatCompletion(id='chatcmpl-9towCkfMK9OoyFD02EL1Al0kOpc4y', choices=[Choice(finish_reason='stop', index=0, logprobs=None, message=ChatCompletionMessage(content='The moon is located in outer space, orbiting around the Earth. It can usually be seen in the night sky, but its exact position in the sky changes as it orbits around our planet.', refusal=None, role='assistant', function_call=None, tool_calls=None))], created=1723090872, model='gpt-3.5-turbo-0125', object='chat.completion', service_tier=None, system_fingerprint=None, usage=CompletionUsage(completion_tokens=39, prompt_tokens=21, total_tokens=60))</code></pre>
+<pre><code>ChatCompletion(id='chatcmpl-9u2fOMlZXCxM7V3bEagGq38anRzQu', choices=[Choice(finish_reason='stop', index=0, logprobs=None, message=ChatCompletionMessage(content='The moon rotates around the Earth, so its position in the sky changes throughout the day and night depending on your location. You can determine the current location of the moon in your area by checking a weather app or a skywatching app.', refusal=None, role='assistant', function_call=None, tool_calls=None))], created=1723143646, model='gpt-3.5-turbo-0125', object='chat.completion', service_tier=None, system_fingerprint=None, usage=CompletionUsage(completion_tokens=48, prompt_tokens=21, total_tokens=69))</code></pre>
 </div>
 </div>
 </div>
 <p><br></p>
 <div class="fragment">
 <p><em>Pull out the response content</em> <br></p>
-<div id="9f5dcd5a" class="cell" data-execution_count="7">
+<div id="543f3088" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href=""></a>assistant_response <span class="op">=</span> response.choices[<span class="dv">0</span>].message.content</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-<p><br></p>
 <div class="fragment">
-<div id="ba066003" class="cell" data-execution_count="8">
+<div id="59858332" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href=""></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>assistant_response<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>The moon is located in outer space, orbiting around the Earth. It can usually be seen in the night sky, but its exact position in the sky changes as it orbits around our planet.</code></pre>
+<pre><code>The moon rotates around the Earth, so its position in the sky changes throughout the day and night depending on your location. You can determine the current location of the moon in your area by checking a weather app or a skywatching app.</code></pre>
 </div>
 </div>
 </div>
@@ -649,7 +647,7 @@
 <section id="turn-the-api-call-into-a-function" class="slide level2">
 <h2>Turn the API call into a function</h2>
 <div class="fragment">
-<div id="88bcb9a4" class="cell" data-execution_count="9">
+<div id="b0b112c7" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb14" data-code-line-numbers="|1-3|5-6|8-9|11|12-13|15-19|21-22|24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href=""></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
 <span id="cb14-2"><a href=""></a><span class="im">import</span> os</span>
 <span id="cb14-3"><a href=""></a><span class="im">import</span> dotenv</span>
@@ -676,12 +674,14 @@
 <span id="cb14-24"><a href=""></a>    <span class="cf">return</span> assistant_response</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-<p><br></p>
+</section>
+<section id="turn-the-api-call-into-a-function-1" class="slide level2">
+<h2>Turn the API call into a function</h2>
 <div class="fragment">
-<div id="c0d0422c" class="cell" data-execution_count="10">
+<div id="74c057ef" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href=""></a>ask_question(<span class="st">"Where is the moon?"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="132">
-<pre><code>'The moon is in space, orbiting around the Earth. It can be seen in the night sky, though its exact location changes as it moves through its orbit.'</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<pre><code>'The moon orbits the Earth, so its position in the sky changes throughout the day and night. To determine where the moon is currently located in the sky, you would need to look up at the sky and locate it based on the time of day and your location.'</code></pre>
 </div>
 </div>
 </div>
@@ -691,7 +691,7 @@
 <p><br></p>
 <div class="fragment">
 <p><em>conversationchatbot.py file</em> <br></p>
-<div id="1dd359d6" class="cell" data-execution_count="11">
+<div id="27cd8e49" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb17" data-code-line-numbers="|1|6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href=""></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
 <span id="cb17-2"><a href=""></a><span class="im">import</span> os</span>
 <span id="cb17-3"><a href=""></a><span class="im">import</span> dotenv</span>
