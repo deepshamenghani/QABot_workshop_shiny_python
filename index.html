@@ -538,7 +538,7 @@
 <hr>
 <div class="fragment">
 <p><em>python file</em> <br></p>
-<div id="10518a63" class="cell" data-execution_count="1">
+<div id="0ce33935" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb4" data-code-line-numbers="|1-3|4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href=""></a><span class="im">import</span> os</span>
 <span id="cb4-2"><a href=""></a><span class="im">import</span> dotenv</span>
 <span id="cb4-3"><a href=""></a></span>
@@ -557,30 +557,149 @@
 <p><br></p>
 <div class="fragment">
 <p><em>conversationchatbot.py file</em> <br></p>
-<div id="20a9fb90" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb5" data-code-line-numbers="|1-4|5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href=""></a><span class="im">import</span> os</span>
-<span id="cb5-2"><a href=""></a><span class="im">import</span> dotenv</span>
-<span id="cb5-3"><a href=""></a></span>
-<span id="cb5-4"><a href=""></a>dotenv.load_dotenv()</span>
-<span id="cb5-5"><a href=""></a>api_key<span class="op">=</span>os.getenv(<span class="st">'OPENAI_API_KEY'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="d4cfb2ce" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb5" data-code-line-numbers="|1|6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href=""></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
+<span id="cb5-2"><a href=""></a><span class="im">import</span> os</span>
+<span id="cb5-3"><a href=""></a><span class="im">import</span> dotenv</span>
+<span id="cb5-4"><a href=""></a></span>
+<span id="cb5-5"><a href=""></a>dotenv.load_dotenv()</span>
+<span id="cb5-6"><a href=""></a>client <span class="op">=</span> OpenAI(api_key<span class="op">=</span>os.getenv(<span class="st">'OPENAI_API_KEY'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
-<section id="the-code-structure-of-a-basic-app" class="slide level2">
-<h2>1.0 The code structure of a basic app</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<p><em>Shiny create -t basic-app</em> <br></p>
-<div id="a537c35d" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb6" data-code-line-numbers="|1|3-7|9-12|14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href=""></a><span class="im">import</span> os</span>
-<span id="cb6-2"><a href=""></a><span class="im">import</span> dotenv</span>
-<span id="cb6-3"><a href=""></a></span>
-<span id="cb6-4"><a href=""></a>dotenv.load_dotenv()</span>
-<span id="cb6-5"><a href=""></a>api_key<span class="op">=</span>os.getenv(<span class="st">'OPENAI_API_KEY'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="build-the-conversation-input-for-openai-call" class="slide level2">
+<h2>Build the conversation input for OpenAI call</h2>
+<div class="fragment">
+<div>
+<p>Conversation input consists of two parts:</p>
+<ol type="1">
+<li class="fragment">The role of the chatbot (character + personality)</li>
+<li class="fragment">The ongoing conversation triggered by the user</li>
+</ol>
 </div>
-</div><div class="column" style="width:50%;">
-<p><br> <img data-src="images/DeepshaMenghani.png" class="quarto-figure quarto-figure-center" style="width:100.0%" alt="Shiny python dashboard example"></p>
-</div></div>
+</div>
+</section>
+<section id="build-the-conversation-input-for-openai-call-1" class="slide level2">
+<h2>Build the conversation input for OpenAI call</h2>
+<div class="fragment">
+<p><em>Assign a role to the chatbot</em> <br></p>
+<div id="2b43d284" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href=""></a>conversation <span class="op">=</span> [{<span class="st">"role"</span>: <span class="st">"system"</span>, <span class="st">"content"</span>: <span class="st">"You are an assistant."</span>}]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="fragment">
+<div class="quarto-figure quarto-figure-left">
+<figure>
+<p><img data-src="images/print_convo_role.png" class="quarto-figure quarto-figure-left" style="width:100.0%" alt="guard it"></p>
+</figure>
+</div>
+</div>
+<div class="fragment">
+<p><em>Update the conversation to include the user question</em> <br></p>
+<div id="33bb8922" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb7" data-code-line-numbers="1|2|"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href=""></a>inputquestion <span class="op">=</span> <span class="st">"Where is the moon?"</span></span>
+<span id="cb7-2"><a href=""></a>conversation.append({<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: inputquestion})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="fragment">
+<div class="quarto-figure quarto-figure-left">
+<figure>
+<p><img data-src="images/print_convo_user.png" class="quarto-figure quarto-figure-left" style="width:100.0%" alt="guard it"></p>
+</figure>
+</div>
+</div>
+</section>
+<section id="send-api-call-with-conversation-context-to-get-response" class="slide level2">
+<h2>Send API call with conversation context to get response</h2>
+<div class="fragment">
+<p><em>Chat completion format</em> <br></p>
+<div id="3aeb3ee0" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb8" data-code-line-numbers="|1|2|3|"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href=""></a>response <span class="op">=</span> client.chat.completions.create(</span>
+<span id="cb8-2"><a href=""></a>        model<span class="op">=</span><span class="st">"gpt-3.5-turbo"</span>,</span>
+<span id="cb8-3"><a href=""></a>        messages<span class="op">=</span>conversation</span>
+<span id="cb8-4"><a href=""></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<p><br></p>
+<div class="fragment">
+<div id="711ccb09" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href=""></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>response<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>ChatCompletion(id='chatcmpl-9towCkfMK9OoyFD02EL1Al0kOpc4y', choices=[Choice(finish_reason='stop', index=0, logprobs=None, message=ChatCompletionMessage(content='The moon is located in outer space, orbiting around the Earth. It can usually be seen in the night sky, but its exact position in the sky changes as it orbits around our planet.', refusal=None, role='assistant', function_call=None, tool_calls=None))], created=1723090872, model='gpt-3.5-turbo-0125', object='chat.completion', service_tier=None, system_fingerprint=None, usage=CompletionUsage(completion_tokens=39, prompt_tokens=21, total_tokens=60))</code></pre>
+</div>
+</div>
+</div>
+<p><br></p>
+<div class="fragment">
+<p><em>Pull out the response content</em> <br></p>
+<div id="9f5dcd5a" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href=""></a>assistant_response <span class="op">=</span> response.choices[<span class="dv">0</span>].message.content</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<p><br></p>
+<div class="fragment">
+<div id="ba066003" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href=""></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>assistant_response<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The moon is located in outer space, orbiting around the Earth. It can usually be seen in the night sky, but its exact position in the sky changes as it orbits around our planet.</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="turn-the-api-call-into-a-function" class="slide level2">
+<h2>Turn the API call into a function</h2>
+<div class="fragment">
+<div id="88bcb9a4" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb14" data-code-line-numbers="|1-3|5-6|8-9|11|12-13|15-19|21-22|24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href=""></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
+<span id="cb14-2"><a href=""></a><span class="im">import</span> os</span>
+<span id="cb14-3"><a href=""></a><span class="im">import</span> dotenv</span>
+<span id="cb14-4"><a href=""></a></span>
+<span id="cb14-5"><a href=""></a>dotenv.load_dotenv()</span>
+<span id="cb14-6"><a href=""></a>client <span class="op">=</span> OpenAI(api_key<span class="op">=</span>os.getenv(<span class="st">'OPENAI_API'</span>))</span>
+<span id="cb14-7"><a href=""></a></span>
+<span id="cb14-8"><a href=""></a><span class="co"># Create a role instruction for the bot</span></span>
+<span id="cb14-9"><a href=""></a>conversation <span class="op">=</span> [{<span class="st">"role"</span>: <span class="st">"system"</span>, <span class="st">"content"</span>: <span class="st">"You are an assistant."</span>}]</span>
+<span id="cb14-10"><a href=""></a></span>
+<span id="cb14-11"><a href=""></a><span class="kw">def</span> ask_question(inputquestion):</span>
+<span id="cb14-12"><a href=""></a>    <span class="co"># Append the user's question to the conversation array</span></span>
+<span id="cb14-13"><a href=""></a>    conversation.append({<span class="st">"role"</span>: <span class="st">"user"</span>,<span class="st">"content"</span>: inputquestion})</span>
+<span id="cb14-14"><a href=""></a></span>
+<span id="cb14-15"><a href=""></a>    <span class="co"># Request gpt-3.5-turbo for chat completion or a response</span></span>
+<span id="cb14-16"><a href=""></a>    response <span class="op">=</span> client.chat.completions.create(</span>
+<span id="cb14-17"><a href=""></a>        model<span class="op">=</span><span class="st">"gpt-3.5-turbo"</span>,</span>
+<span id="cb14-18"><a href=""></a>        messages<span class="op">=</span>conversation</span>
+<span id="cb14-19"><a href=""></a>    )</span>
+<span id="cb14-20"><a href=""></a></span>
+<span id="cb14-21"><a href=""></a>    <span class="co"># Access the response from the API to display it</span></span>
+<span id="cb14-22"><a href=""></a>    assistant_response <span class="op">=</span> response.choices[<span class="dv">0</span>].message.content</span>
+<span id="cb14-23"><a href=""></a>    </span>
+<span id="cb14-24"><a href=""></a>    <span class="cf">return</span> assistant_response</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<p><br></p>
+<div class="fragment">
+<div id="c0d0422c" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href=""></a>ask_question(<span class="st">"Where is the moon?"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="132">
+<pre><code>'The moon is in space, orbiting around the Earth. It can be seen in the night sky, though its exact location changes as it moves through its orbit.'</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="connect-with-openai-client-1" class="slide level2">
+<h2>Connect with OpenAI client</h2>
+<p><br></p>
+<div class="fragment">
+<p><em>conversationchatbot.py file</em> <br></p>
+<div id="1dd359d6" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb17" data-code-line-numbers="|1|6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href=""></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
+<span id="cb17-2"><a href=""></a><span class="im">import</span> os</span>
+<span id="cb17-3"><a href=""></a><span class="im">import</span> dotenv</span>
+<span id="cb17-4"><a href=""></a></span>
+<span id="cb17-5"><a href=""></a>dotenv.load_dotenv()</span>
+<span id="cb17-6"><a href=""></a>client <span class="op">=</span> OpenAI(api_key<span class="op">=</span>os.getenv(<span class="st">'OPENAI_API_KEY'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
