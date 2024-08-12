@@ -60,7 +60,27 @@ And a parent as of this year!
 
 ![](images/chatgptsun_gif.gif){width="100%" fig-align="center" fig-alt="Shiny python dashboard example"}
 
-## Let's imagine such a chatbot in our Shiny application
+## How does it do that? 
+
+
+::: {.fragment}
+
+### To understand that, think of my 7 month old as a Generative AI system
+
+![](images/mybaby.jpg){width="30%" fig-align="center" fig-alt="my baby"}
+
+:::
+
+## How does it do that? 
+
+
+### To understand that, think of my 7 month old as a Generative AI system
+
+<br>
+
+![](images/twinkletwinkle.png){width="100%" fig-align="center" fig-alt="twinkle twinkle"}
+
+## Imagine such a tool inside our Shiny application
 
 ::::: columns
 ::: {.column width="50%"}
@@ -108,7 +128,7 @@ And a parent as of this year!
 
 ## Create an account
 
-Go to https://platform.openai.com/
+Go to [https://platform.openai.com/](https://platform.openai.com/)
 
 ![](images/openai_platform.png){width="100%" fig-align="center" fig-alt="Sopen ai platform"}
 
@@ -145,10 +165,10 @@ OPENAI_API_KEY = "sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 <hr>
 
 ::: {.fragment}
-*python file* <br>
+*Access it from your python file* <br>
 
 ```{python}
-#| code-line-numbers: "|1-3|4"
+#| code-line-numbers: "|1-2|4|5|"
 import os
 import dotenv
 
@@ -159,6 +179,8 @@ api_key=os.getenv('OPENAI_API_KEY')
 
 # 3. Build the chatbot
 
+*conversationchatbot.py file* <br>
+
 ## Connect with OpenAI client
 
 <br>
@@ -167,7 +189,7 @@ api_key=os.getenv('OPENAI_API_KEY')
 *conversationchatbot.py file* <br>
 
 ```{python}
-#| code-line-numbers: "|1|6"
+#| code-line-numbers: "|1|2-5|6|"
 from openai import OpenAI
 import os
 import dotenv
@@ -181,18 +203,30 @@ client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
 
 ::: {.fragment}
 ::: {.incremental}
-Conversation input consists of two parts: 
+Conversation input consists of: 
 
 1.  The role of the chatbot (character + personality)
-2.  The ongoing conversation triggered by the user
+2.  The question input by the user
+3.  The entire ongoing conversation thus far + the next question
+
 :::
 :::
+
+::: {.fragment}
+![](images/openaisendreceive.png){width="100%" fig-align="left" fig-alt="guard it"}
+
+:::
+
+
 
 ## Build the conversation input for OpenAI call
 
+::: {.fragment}
+![](images/openaisendreceive.png){width="70%" fig-align="left" fig-alt="guard it"}
+
+:::
 
 ::: {.fragment}
-*Assign a role to the chatbot* <br>
 
 ```{python}
 conversation = [{"role": "system", "content": "You are an assistant."}]
@@ -200,13 +234,11 @@ conversation = [{"role": "system", "content": "You are an assistant."}]
 :::
 
 ::: {.fragment}
-![](images/print_convo_role.png){width="100%" fig-align="left" fig-alt="guard it"}
+![](images/print_convo_role.png){width="70%" fig-align="left" fig-alt="guard it"}
 
 :::
 
-
 ::: {.fragment}
-*Update the conversation to include the user question* <br>
 
 ```{python}
 #| code-line-numbers: "1|2|"
@@ -216,7 +248,7 @@ conversation.append({"role": "user", "content": inputquestion})
 :::
 
 ::: {.fragment}
-![](images/print_convo_user.png){width="100%" fig-align="left" fig-alt="guard it"}
+![](images/print_convo_user.png){width="70%" fig-align="left" fig-alt="guard it"}
 
 :::
 

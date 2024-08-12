@@ -10,6 +10,10 @@ __pycache__/
 *.png
 *.gif
 *.jpg
+*.pptx
+
+# Output
+*.html
 
 # Distribution / packaging
 .Python

@@ -455,8 +455,26 @@
 <h1></h1>
 
 <img data-src="images/chatgptsun_gif.gif" class="quarto-figure quarto-figure-center r-stretch" style="width:100.0%" alt="Shiny python dashboard example"></section>
-<section id="lets-imagine-such-a-chatbot-in-our-shiny-application" class="slide level2">
-<h2>Let’s imagine such a chatbot in our Shiny application</h2>
+<section id="how-does-it-do-that" class="slide level2">
+<h2>How does it do that?</h2>
+<div class="fragment">
+<!-- -->
+<h3 id="to-understand-that-think-of-my-7-month-old-as-a-generative-ai-system">To understand that, think of my 7 month old as a Generative AI system</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/mybaby.jpg" class="quarto-figure quarto-figure-center" style="width:30.0%" alt="my baby"></p>
+</figure>
+</div>
+</div>
+</section>
+<section id="how-does-it-do-that-1" class="slide level2">
+<h2>How does it do that?</h2>
+<h3 id="to-understand-that-think-of-my-7-month-old-as-a-generative-ai-system-1">To understand that, think of my 7 month old as a Generative AI system</h3>
+<p><br></p>
+
+<img data-src="images/twinkletwinkle.png" class="quarto-figure quarto-figure-center r-stretch" style="width:100.0%" alt="twinkle twinkle"></section>
+<section id="imagine-such-a-tool-inside-our-shiny-application" class="slide level2">
+<h2>Imagine such a tool inside our Shiny application</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="quarto-figure quarto-figure-center">
@@ -512,7 +530,7 @@
 </section>
 <section id="create-an-account" class="slide level2">
 <h2>Create an account</h2>
-<p>Go to https://platform.openai.com/</p>
+<p>Go to <a href="https://platform.openai.com/">https://platform.openai.com/</a></p>
 
 <img data-src="images/openai_platform.png" class="quarto-figure quarto-figure-center r-stretch" style="width:100.0%" alt="Sopen ai platform"></section>
 <section id="get-the-api-key" class="slide level2">
@@ -537,9 +555,9 @@
 </div>
 <hr>
 <div class="fragment">
-<p><em>python file</em> <br></p>
-<div id="346d6da0" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb4" data-code-line-numbers="|1-3|4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href=""></a><span class="im">import</span> os</span>
+<p><em>Access it from your python file</em> <br></p>
+<div id="e4fb3dc9" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb4" data-code-line-numbers="|1-2|4|5|"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href=""></a><span class="im">import</span> os</span>
 <span id="cb4-2"><a href=""></a><span class="im">import</span> dotenv</span>
 <span id="cb4-3"><a href=""></a></span>
 <span id="cb4-4"><a href=""></a>dotenv.load_dotenv()</span>
@@ -550,15 +568,15 @@
 <section>
 <section id="build-the-chatbot" class="title-slide slide level1 center">
 <h1>3. Build the chatbot</h1>
-
+<p><em>conversationchatbot.py file</em> <br></p>
 </section>
 <section id="connect-with-openai-client" class="slide level2">
 <h2>Connect with OpenAI client</h2>
 <p><br></p>
 <div class="fragment">
 <p><em>conversationchatbot.py file</em> <br></p>
-<div id="cb8e011c" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb5" data-code-line-numbers="|1|6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href=""></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
+<div id="8b8fe7e3" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb5" data-code-line-numbers="|1|2-5|6|"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href=""></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
 <span id="cb5-2"><a href=""></a><span class="im">import</span> os</span>
 <span id="cb5-3"><a href=""></a><span class="im">import</span> dotenv</span>
 <span id="cb5-4"><a href=""></a></span>
@@ -571,32 +589,45 @@
 <h2>Build the conversation input for OpenAI call</h2>
 <div class="fragment">
 <div>
-<p>Conversation input consists of two parts:</p>
+<p>Conversation input consists of:</p>
 <ol type="1">
 <li class="fragment">The role of the chatbot (character + personality)</li>
-<li class="fragment">The ongoing conversation triggered by the user</li>
+<li class="fragment">The question input by the user</li>
+<li class="fragment">The entire ongoing conversation thus far + the next question</li>
 </ol>
+</div>
+</div>
+<div class="fragment">
+<div class="quarto-figure quarto-figure-left">
+<figure>
+<p><img data-src="images/openaisendreceive.png" class="quarto-figure quarto-figure-left" style="width:100.0%" alt="guard it"></p>
+</figure>
 </div>
 </div>
 </section>
 <section id="build-the-conversation-input-for-openai-call-1" class="slide level2">
 <h2>Build the conversation input for OpenAI call</h2>
 <div class="fragment">
-<p><em>Assign a role to the chatbot</em> <br></p>
-<div id="3ab216e1" class="cell" data-execution_count="3">
+<div class="quarto-figure quarto-figure-left">
+<figure>
+<p><img data-src="images/openaisendreceive.png" class="quarto-figure quarto-figure-left" style="width:70.0%" alt="guard it"></p>
+</figure>
+</div>
+</div>
+<div class="fragment">
+<div id="a5bbc021" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href=""></a>conversation <span class="op">=</span> [{<span class="st">"role"</span>: <span class="st">"system"</span>, <span class="st">"content"</span>: <span class="st">"You are an assistant."</span>}]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="fragment">
 <div class="quarto-figure quarto-figure-left">
 <figure>
-<p><img data-src="images/print_convo_role.png" class="quarto-figure quarto-figure-left" style="width:100.0%" alt="guard it"></p>
+<p><img data-src="images/print_convo_role.png" class="quarto-figure quarto-figure-left" style="width:70.0%" alt="guard it"></p>
 </figure>
 </div>
 </div>
 <div class="fragment">
-<p><em>Update the conversation to include the user question</em> <br></p>
-<div id="05906579" class="cell" data-execution_count="4">
+<div id="c13e9143" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7" data-code-line-numbers="1|2|"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href=""></a>inputquestion <span class="op">=</span> <span class="st">"Where is the moon?"</span></span>
 <span id="cb7-2"><a href=""></a>conversation.append({<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: inputquestion})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -604,7 +635,7 @@
 <div class="fragment">
 <div class="quarto-figure quarto-figure-left">
 <figure>
-<p><img data-src="images/print_convo_user.png" class="quarto-figure quarto-figure-left" style="width:100.0%" alt="guard it"></p>
+<p><img data-src="images/print_convo_user.png" class="quarto-figure quarto-figure-left" style="width:70.0%" alt="guard it"></p>
 </figure>
 </div>
 </div>
@@ -613,7 +644,7 @@
 <h2>Send API call with conversation context to get response</h2>
 <div class="fragment">
 <p><em>Chat completion format</em> <br></p>
-<div id="aa6bafcc" class="cell" data-execution_count="5">
+<div id="fa163d5f" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb8" data-code-line-numbers="|1|2|3|"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href=""></a>response <span class="op">=</span> client.chat.completions.create(</span>
 <span id="cb8-2"><a href=""></a>        model<span class="op">=</span><span class="st">"gpt-3.5-turbo"</span>,</span>
 <span id="cb8-3"><a href=""></a>        messages<span class="op">=</span>conversation</span>
@@ -641,7 +672,7 @@
 <section id="send-api-call-with-conversation-context-to-get-response-1" class="slide level2">
 <h2>Send API call with conversation context to get response</h2>
 <p><em>Pull out the response content</em> <br></p>
-<div id="b61c3509" class="cell" data-execution_count="6">
+<div id="d1a1b102" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href=""></a>assistant_response <span class="op">=</span> response.choices[<span class="dv">0</span>].message.content</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
@@ -665,7 +696,7 @@
 <section id="turn-the-api-call-into-a-function" class="slide level2">
 <h2>Turn the API call into a function</h2>
 <div class="fragment">
-<div id="2a465430" class="cell" data-execution_count="7">
+<div id="848568d1" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb10" data-code-line-numbers="|1-3|5-6|8-9|11|12-13|15-19|21-22|24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href=""></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
 <span id="cb10-2"><a href=""></a><span class="im">import</span> os</span>
 <span id="cb10-3"><a href=""></a><span class="im">import</span> dotenv</span>
@@ -697,7 +728,7 @@
 <h2>Turn the API call into a function</h2>
 <p><em>conversationchatbot.py file</em> <br></p>
 <div class="fragment">
-<div id="6e4b5e59" class="cell" data-execution_count="8">
+<div id="68f0d6b4" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href=""></a>ask_question(<span class="st">"Where is the moon?"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
@@ -746,7 +777,7 @@
 <div class="columns">
 <div class="column" style="width:50%;">
 <p><em>Shiny create -t basic-app</em> <br></p>
-<div id="7aca9a82" class="cell" data-execution_count="9">
+<div id="9cd3cc6d" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb12" data-code-line-numbers="|1|3-7|9-12|14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href=""></a><span class="im">from</span> shiny <span class="im">import</span> App, render, ui</span>
 <span id="cb12-2"><a href=""></a></span>
 <span id="cb12-3"><a href=""></a>app_ui <span class="op">=</span> ui.page_fluid(</span>
@@ -776,7 +807,7 @@
 <div class="columns">
 <div class="column" style="width:50%;">
 <p><em>Shiny create -t basic-app</em> <br></p>
-<div id="f0527fc9" class="cell" data-execution_count="10">
+<div id="ec0a6fb5" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb13" data-code-line-numbers="|1|3-9|11-14|"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href=""></a><span class="im">from</span> shiny <span class="im">import</span> App, render, ui</span>
 <span id="cb13-2"><a href=""></a></span>
 <span id="cb13-3"><a href=""></a>app_ui <span class="op">=</span> ui.page_fillable(</span>
@@ -802,7 +833,7 @@
 <div class="columns">
 <div class="column" style="width:50%;">
 <p><em>Shiny create -t basic-app</em> <br></p>
-<div id="48d0ba1b" class="cell" data-execution_count="11">
+<div id="24693921" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb14" data-code-line-numbers="|5-13|"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href=""></a><span class="im">from</span> shiny <span class="im">import</span> App, render, ui</span>
 <span id="cb14-2"><a href=""></a></span>
 <span id="cb14-3"><a href=""></a>app_ui <span class="op">=</span> ui.page_fillable(</span>
@@ -828,7 +859,7 @@
 <div class="columns">
 <div class="column" style="width:50%;">
 <p><em>Shiny create -t basic-app</em> <br></p>
-<div id="bdfcefac" class="cell" data-execution_count="12">
+<div id="71d3f515" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb15" data-code-line-numbers="|5-13|"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href=""></a><span class="im">from</span> shiny <span class="im">import</span> App, render, ui</span>
 <span id="cb15-2"><a href=""></a></span>
 <span id="cb15-3"><a href=""></a>app_ui <span class="op">=</span> ui.page_fillable(</span>
@@ -855,7 +886,7 @@
 <h2>Add a box for user to input question</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div id="1999c783" class="cell" data-execution_count="13">
+<div id="8bee4ff3" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb16" data-code-line-numbers="|5-13|"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href=""></a><span class="im">from</span> shiny <span class="im">import</span> App, render, ui</span>
 <span id="cb16-2"><a href=""></a></span>
 <span id="cb16-3"><a href=""></a>app_ui <span class="op">=</span> ui.page_fillable(</span>
@@ -884,7 +915,7 @@
 <h2>Add a send button</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div id="a576e5ce" class="cell" data-execution_count="14">
+<div id="11de3537" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb17" data-code-line-numbers="|5-13|"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href=""></a><span class="im">from</span> shiny <span class="im">import</span> App, render, ui</span>
 <span id="cb17-2"><a href=""></a></span>
 <span id="cb17-3"><a href=""></a>app_ui <span class="op">=</span> ui.page_fillable(</span>
@@ -915,7 +946,7 @@
 <h2>Add an area for the answer to appear</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div id="fe7b7b8c" class="cell" data-execution_count="15">
+<div id="23dd6c70" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb18" data-code-line-numbers="|5-13|"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href=""></a><span class="im">from</span> shiny <span class="im">import</span> App, render, ui</span>
 <span id="cb18-2"><a href=""></a></span>
 <span id="cb18-3"><a href=""></a>app_ui <span class="op">=</span> ui.page_fillable(</span>
@@ -951,7 +982,7 @@
 <h2>Update the server to get response from OpenAI</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div id="b5826fc1" class="cell" data-execution_count="16">
+<div id="63a97caf" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb19" data-code-line-numbers="|5-13|"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href=""></a><span class="im">from</span> shiny <span class="im">import</span> App, render, ui, reactive</span>
 <span id="cb19-2"><a href=""></a><span class="im">import</span> conversationchatbot  </span>
 <span id="cb19-3"><a href=""></a></span>
@@ -1009,7 +1040,7 @@
 <h2>Update conversation chatbot function</h2>
 <h3 id="original-function-with-user-question-input-as-parameter">Original function with user question input as parameter</h3>
 <div class="fragment">
-<div id="450ed1fe" class="cell" data-execution_count="17">
+<div id="99b6ffd8" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb20" data-code-line-numbers="|1-3|5-6|8-9|11|12-13|15-19|21-22|24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href=""></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
 <span id="cb20-2"><a href=""></a><span class="im">import</span> os</span>
 <span id="cb20-3"><a href=""></a><span class="im">import</span> dotenv</span>
@@ -1041,7 +1072,7 @@
 <h2>Update conversation chatbot function</h2>
 <h3 id="add-api-key-as-input-parameter-to-the-function">Add API key as input parameter to the function</h3>
 <div class="fragment">
-<div id="8956d180" class="cell" data-execution_count="18">
+<div id="cd356803" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb21" data-code-line-numbers="|1-3|5-6|8-9|11|12-13|15-19|21-22|24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href=""></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
 <span id="cb21-2"><a href=""></a><span class="im">import</span> os</span>
 <span id="cb21-3"><a href=""></a><span class="im">import</span> dotenv</span>
@@ -1075,7 +1106,7 @@
 <h2>Update conversation chatbot function</h2>
 <h3 id="test-the-function">Test the function</h3>
 <div class="fragment">
-<div id="ec8bd02c" class="cell" data-execution_count="19">
+<div id="61f0ab32" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href=""></a>ask_question(</span>
 <span id="cb22-2"><a href=""></a>    <span class="st">"Where is the moon?"</span></span>
 <span id="cb22-3"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1099,7 +1130,7 @@
 </div>
 </div>
 <div class="fragment">
-<div id="789d752e" class="cell" data-execution_count="20">
+<div id="1acbc838" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href=""></a>ask_question(</span>
 <span id="cb23-2"><a href=""></a>    <span class="st">"Where is the moon?"</span>, </span>
 <span id="cb23-3"><a href=""></a>    os.getenv(<span class="st">'OPENAI_API_KEY'</span>)</span>
@@ -1128,7 +1159,7 @@
 <h2>Update the app for API key input</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div id="0231e92f" class="cell" data-execution_count="21">
+<div id="2fd4bc0a" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb24" data-code-line-numbers="|5-13|"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href=""></a><span class="im">from</span> shiny <span class="im">import</span> App, render, ui, reactive</span>
 <span id="cb24-2"><a href=""></a><span class="im">import</span> conversationchatbot  </span>
 <span id="cb24-3"><a href=""></a></span>
@@ -1178,7 +1209,7 @@
 <h2>Update the app for API key input</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div id="dd3164d3" class="cell" data-execution_count="22">
+<div id="89dfe54e" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb25" data-code-line-numbers="|5-13|"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href=""></a><span class="im">from</span> shiny <span class="im">import</span> App, render, ui, reactive</span>
 <span id="cb25-2"><a href=""></a><span class="im">import</span> conversationchatbot  </span>
 <span id="cb25-3"><a href=""></a></span>
@@ -1228,7 +1259,7 @@
 <h2>Clean up the API key error</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div id="17167207" class="cell" data-execution_count="23">
+<div id="361724c8" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb26" data-code-line-numbers="|5-13|"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href=""></a><span class="im">from</span> shiny <span class="im">import</span> App, render, ui, reactive</span>
 <span id="cb26-2"><a href=""></a><span class="im">import</span> conversationchatbot  </span>
 <span id="cb26-3"><a href=""></a></span>
@@ -1282,7 +1313,7 @@
 <h2>Create a modal for user to input API key</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div id="4322b255" class="cell" data-execution_count="24">
+<div id="315fd026" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb27" data-code-line-numbers="|5-13|"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href=""></a><span class="im">from</span> shiny <span class="im">import</span> App, render, ui, reactive</span>
 <span id="cb27-2"><a href=""></a><span class="im">import</span> conversationchatbot  </span>
 <span id="cb27-3"><a href=""></a></span>
