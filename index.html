@@ -538,7 +538,7 @@
 <hr>
 <div class="fragment">
 <p><em>python file</em> <br></p>
-<div id="c21a7bdd" class="cell" data-execution_count="1">
+<div id="346d6da0" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb4" data-code-line-numbers="|1-3|4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href=""></a><span class="im">import</span> os</span>
 <span id="cb4-2"><a href=""></a><span class="im">import</span> dotenv</span>
 <span id="cb4-3"><a href=""></a></span>
@@ -557,7 +557,7 @@
 <p><br></p>
 <div class="fragment">
 <p><em>conversationchatbot.py file</em> <br></p>
-<div id="0c393f30" class="cell" data-execution_count="2">
+<div id="cb8e011c" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb5" data-code-line-numbers="|1|6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href=""></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
 <span id="cb5-2"><a href=""></a><span class="im">import</span> os</span>
 <span id="cb5-3"><a href=""></a><span class="im">import</span> dotenv</span>
@@ -583,7 +583,7 @@
 <h2>Build the conversation input for OpenAI call</h2>
 <div class="fragment">
 <p><em>Assign a role to the chatbot</em> <br></p>
-<div id="863deb10" class="cell" data-execution_count="3">
+<div id="3ab216e1" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href=""></a>conversation <span class="op">=</span> [{<span class="st">"role"</span>: <span class="st">"system"</span>, <span class="st">"content"</span>: <span class="st">"You are an assistant."</span>}]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
@@ -596,7 +596,7 @@
 </div>
 <div class="fragment">
 <p><em>Update the conversation to include the user question</em> <br></p>
-<div id="2c17a5b0" class="cell" data-execution_count="4">
+<div id="05906579" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7" data-code-line-numbers="1|2|"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href=""></a>inputquestion <span class="op">=</span> <span class="st">"Where is the moon?"</span></span>
 <span id="cb7-2"><a href=""></a>conversation.append({<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: inputquestion})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -613,7 +613,7 @@
 <h2>Send API call with conversation context to get response</h2>
 <div class="fragment">
 <p><em>Chat completion format</em> <br></p>
-<div id="52f633e3" class="cell" data-execution_count="5">
+<div id="aa6bafcc" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb8" data-code-line-numbers="|1|2|3|"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href=""></a>response <span class="op">=</span> client.chat.completions.create(</span>
 <span id="cb8-2"><a href=""></a>        model<span class="op">=</span><span class="st">"gpt-3.5-turbo"</span>,</span>
 <span id="cb8-3"><a href=""></a>        messages<span class="op">=</span>conversation</span>
@@ -621,25 +621,43 @@
 </div>
 </div>
 <div class="fragment">
-<div id="a0d2f554" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href=""></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>response<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>ChatCompletion(id='chatcmpl-9u2fOMlZXCxM7V3bEagGq38anRzQu', choices=[Choice(finish_reason='stop', index=0, logprobs=None, message=ChatCompletionMessage(content='The moon rotates around the Earth, so its position in the sky changes throughout the day and night depending on your location. You can determine the current location of the moon in your area by checking a weather app or a skywatching app.', refusal=None, role='assistant', function_call=None, tool_calls=None))], created=1723143646, model='gpt-3.5-turbo-0125', object='chat.completion', service_tier=None, system_fingerprint=None, usage=CompletionUsage(completion_tokens=48, prompt_tokens=21, total_tokens=69))</code></pre>
+<div title="response">
+<div class="callout callout-caution callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>response</strong></p>
+</div>
+<div class="callout-content">
+<p>ChatCompletion(id=‘chatcmpl-9uUJ1QzCnQP7tPji48AIal9LQ8Fpe’, choices=[Choice(finish_reason=‘stop’, index=0, logprobs=None, message=ChatCompletionMessage(content=“The moon is currently in the sky, but its precise location will depend on your specific location and the time of day. If you would like to know the moon’s current phase or position in the sky for your location, you can use a moon tracking app or website.”, refusal=None, role=‘assistant’, function_call=None, tool_calls=None))], created=1723249891, model=‘gpt-3.5-turbo-0125’, object=‘chat.completion’, service_tier=None, system_fingerprint=None, usage=CompletionUsage(completion_tokens=54, prompt_tokens=21, total_tokens=75))</p>
 </div>
 </div>
 </div>
-<p><br></p>
-<div class="fragment">
+</div>
+</div>
+</section>
+<section id="send-api-call-with-conversation-context-to-get-response-1" class="slide level2">
+<h2>Send API call with conversation context to get response</h2>
 <p><em>Pull out the response content</em> <br></p>
-<div id="543f3088" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href=""></a>assistant_response <span class="op">=</span> response.choices[<span class="dv">0</span>].message.content</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div id="b61c3509" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href=""></a>assistant_response <span class="op">=</span> response.choices[<span class="dv">0</span>].message.content</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
-<div id="59858332" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href=""></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>assistant_response<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>The moon rotates around the Earth, so its position in the sky changes throughout the day and night depending on your location. You can determine the current location of the moon in your area by checking a weather app or a skywatching app.</code></pre>
+<div title="assistant_response">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>assistant_response</strong></p>
+</div>
+<div class="callout-content">
+<p>“The moon is currently in the sky, but its precise location will depend on your specific location and the time of day. If you would like to know the moon’s current phase or position in the sky for your location, you can use a moon tracking app or website.”</p>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -647,59 +665,743 @@
 <section id="turn-the-api-call-into-a-function" class="slide level2">
 <h2>Turn the API call into a function</h2>
 <div class="fragment">
-<div id="b0b112c7" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb14" data-code-line-numbers="|1-3|5-6|8-9|11|12-13|15-19|21-22|24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href=""></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
-<span id="cb14-2"><a href=""></a><span class="im">import</span> os</span>
-<span id="cb14-3"><a href=""></a><span class="im">import</span> dotenv</span>
-<span id="cb14-4"><a href=""></a></span>
-<span id="cb14-5"><a href=""></a>dotenv.load_dotenv()</span>
-<span id="cb14-6"><a href=""></a>client <span class="op">=</span> OpenAI(api_key<span class="op">=</span>os.getenv(<span class="st">'OPENAI_API'</span>))</span>
-<span id="cb14-7"><a href=""></a></span>
-<span id="cb14-8"><a href=""></a><span class="co"># Create a role instruction for the bot</span></span>
-<span id="cb14-9"><a href=""></a>conversation <span class="op">=</span> [{<span class="st">"role"</span>: <span class="st">"system"</span>, <span class="st">"content"</span>: <span class="st">"You are an assistant."</span>}]</span>
-<span id="cb14-10"><a href=""></a></span>
-<span id="cb14-11"><a href=""></a><span class="kw">def</span> ask_question(inputquestion):</span>
-<span id="cb14-12"><a href=""></a>    <span class="co"># Append the user's question to the conversation array</span></span>
-<span id="cb14-13"><a href=""></a>    conversation.append({<span class="st">"role"</span>: <span class="st">"user"</span>,<span class="st">"content"</span>: inputquestion})</span>
-<span id="cb14-14"><a href=""></a></span>
-<span id="cb14-15"><a href=""></a>    <span class="co"># Request gpt-3.5-turbo for chat completion or a response</span></span>
-<span id="cb14-16"><a href=""></a>    response <span class="op">=</span> client.chat.completions.create(</span>
-<span id="cb14-17"><a href=""></a>        model<span class="op">=</span><span class="st">"gpt-3.5-turbo"</span>,</span>
-<span id="cb14-18"><a href=""></a>        messages<span class="op">=</span>conversation</span>
-<span id="cb14-19"><a href=""></a>    )</span>
-<span id="cb14-20"><a href=""></a></span>
-<span id="cb14-21"><a href=""></a>    <span class="co"># Access the response from the API to display it</span></span>
-<span id="cb14-22"><a href=""></a>    assistant_response <span class="op">=</span> response.choices[<span class="dv">0</span>].message.content</span>
-<span id="cb14-23"><a href=""></a>    </span>
-<span id="cb14-24"><a href=""></a>    <span class="cf">return</span> assistant_response</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="2a465430" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb10" data-code-line-numbers="|1-3|5-6|8-9|11|12-13|15-19|21-22|24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href=""></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
+<span id="cb10-2"><a href=""></a><span class="im">import</span> os</span>
+<span id="cb10-3"><a href=""></a><span class="im">import</span> dotenv</span>
+<span id="cb10-4"><a href=""></a></span>
+<span id="cb10-5"><a href=""></a>dotenv.load_dotenv()</span>
+<span id="cb10-6"><a href=""></a>client <span class="op">=</span> OpenAI(api_key<span class="op">=</span>os.getenv(<span class="st">'OPENAI_API'</span>))</span>
+<span id="cb10-7"><a href=""></a></span>
+<span id="cb10-8"><a href=""></a><span class="co"># Create a role instruction for the bot</span></span>
+<span id="cb10-9"><a href=""></a>conversation <span class="op">=</span> [{<span class="st">"role"</span>: <span class="st">"system"</span>, <span class="st">"content"</span>: <span class="st">"You are an assistant."</span>}]</span>
+<span id="cb10-10"><a href=""></a></span>
+<span id="cb10-11"><a href=""></a><span class="kw">def</span> ask_question(inputquestion):</span>
+<span id="cb10-12"><a href=""></a>    <span class="co"># Append the user's question to the conversation array</span></span>
+<span id="cb10-13"><a href=""></a>    conversation.append({<span class="st">"role"</span>: <span class="st">"user"</span>,<span class="st">"content"</span>: inputquestion})</span>
+<span id="cb10-14"><a href=""></a></span>
+<span id="cb10-15"><a href=""></a>    <span class="co"># Request gpt-3.5-turbo for chat completion or a response</span></span>
+<span id="cb10-16"><a href=""></a>    response <span class="op">=</span> client.chat.completions.create(</span>
+<span id="cb10-17"><a href=""></a>        model<span class="op">=</span><span class="st">"gpt-3.5-turbo"</span>,</span>
+<span id="cb10-18"><a href=""></a>        messages<span class="op">=</span>conversation</span>
+<span id="cb10-19"><a href=""></a>    )</span>
+<span id="cb10-20"><a href=""></a></span>
+<span id="cb10-21"><a href=""></a>    <span class="co"># Access the response from the API to display it</span></span>
+<span id="cb10-22"><a href=""></a>    assistant_response <span class="op">=</span> response.choices[<span class="dv">0</span>].message.content</span>
+<span id="cb10-23"><a href=""></a>    </span>
+<span id="cb10-24"><a href=""></a>    <span class="cf">return</span> assistant_response</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
 <section id="turn-the-api-call-into-a-function-1" class="slide level2">
 <h2>Turn the API call into a function</h2>
+<p><em>conversationchatbot.py file</em> <br></p>
 <div class="fragment">
-<div id="74c057ef" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href=""></a>ask_question(<span class="st">"Where is the moon?"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="10">
-<pre><code>'The moon orbits the Earth, so its position in the sky changes throughout the day and night. To determine where the moon is currently located in the sky, you would need to look up at the sky and locate it based on the time of day and your location.'</code></pre>
+<div id="6e4b5e59" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href=""></a>ask_question(<span class="st">"Where is the moon?"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="fragment">
+<div title="function output">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>function output</strong></p>
+</div>
+<div class="callout-content">
+<p>“The moon is currently in the sky, but its precise location will depend on your specific location and the time of day. If you would like to know the moon’s current phase or position in the sky for your location, you can use a moon tracking app or website.”</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="lets-create-the-shiny-application-to-serve-this-bot" class="title-slide slide level1 center">
+<h1>Let’s create the Shiny application to serve this bot</h1>
+
+</section>
+<section id="the-basic-app-commands-and-structure-to-get-started" class="slide level2">
+<h2>The basic app commands and structure to get started</h2>
+<div class="columns">
+<div class="column" style="width:35%;">
+<div class="fragment">
+<p><em>Shiny create - -help</em> <br><br></p>
+</div>
+</div><div class="column" style="width:65%;">
+<div class="fragment">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/shinycreatehelp.png" class="quarto-figure quarto-figure-center" style="width:100.0%" alt="Shiny python dashboard example"></p>
+</figure>
+</div>
+</div>
+</div></div>
+</section>
+<section id="the-code-structure-of-a-basic-app" class="slide level2">
+<h2>The code structure of a basic app</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><em>Shiny create -t basic-app</em> <br></p>
+<div id="7aca9a82" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb12" data-code-line-numbers="|1|3-7|9-12|14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href=""></a><span class="im">from</span> shiny <span class="im">import</span> App, render, ui</span>
+<span id="cb12-2"><a href=""></a></span>
+<span id="cb12-3"><a href=""></a>app_ui <span class="op">=</span> ui.page_fluid(</span>
+<span id="cb12-4"><a href=""></a>    ui.panel_title(<span class="st">"Hello Shiny!"</span>),</span>
+<span id="cb12-5"><a href=""></a>    ui.input_slider(<span class="st">"n"</span>, <span class="st">"N"</span>, <span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">20</span>),</span>
+<span id="cb12-6"><a href=""></a>    ui.output_text_verbatim(<span class="st">"txt"</span>),</span>
+<span id="cb12-7"><a href=""></a>)</span>
+<span id="cb12-8"><a href=""></a></span>
+<span id="cb12-9"><a href=""></a><span class="kw">def</span> server(<span class="bu">input</span>, output, session):</span>
+<span id="cb12-10"><a href=""></a>    <span class="at">@render.text</span></span>
+<span id="cb12-11"><a href=""></a>    <span class="kw">def</span> txt():</span>
+<span id="cb12-12"><a href=""></a>        <span class="cf">return</span> <span class="ss">f"n*2 is </span><span class="sc">{</span><span class="bu">input</span><span class="sc">.</span>n() <span class="op">*</span> <span class="dv">2</span><span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb12-13"><a href=""></a></span>
+<span id="cb12-14"><a href=""></a>app <span class="op">=</span> App(app_ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:50%;">
+<p><br> <img data-src="images/appbasic.png" class="quarto-figure quarto-figure-center" style="width:100.0%" alt="Shiny python dashboard example"></p>
+</div></div>
+</section></section>
+<section>
+<section id="lets-update-the-shiny-app-for-our-qa-bot" class="title-slide slide level1 center">
+<h1>Let’s update the Shiny App for our QA bot</h1>
+
+</section>
+<section id="add-a-title" class="slide level2">
+<h2>Add a title</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><em>Shiny create -t basic-app</em> <br></p>
+<div id="f0527fc9" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb13" data-code-line-numbers="|1|3-9|11-14|"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href=""></a><span class="im">from</span> shiny <span class="im">import</span> App, render, ui</span>
+<span id="cb13-2"><a href=""></a></span>
+<span id="cb13-3"><a href=""></a>app_ui <span class="op">=</span> ui.page_fillable(</span>
+<span id="cb13-4"><a href=""></a>    ui.page_auto(</span>
+<span id="cb13-5"><a href=""></a>        <span class="co"># Title of the application</span></span>
+<span id="cb13-6"><a href=""></a>        ui.h1(<span class="st">"Shiny Web Application Chatbot"</span>)</span>
+<span id="cb13-7"><a href=""></a>    )</span>
+<span id="cb13-8"><a href=""></a>)</span>
+<span id="cb13-9"><a href=""></a></span>
+<span id="cb13-10"><a href=""></a><span class="kw">def</span> server(<span class="bu">input</span>, output, session):</span>
+<span id="cb13-11"><a href=""></a>    <span class="at">@render.text</span></span>
+<span id="cb13-12"><a href=""></a>    <span class="kw">def</span> txt():</span>
+<span id="cb13-13"><a href=""></a>        <span class="cf">return</span> <span class="st">""</span></span>
+<span id="cb13-14"><a href=""></a></span>
+<span id="cb13-15"><a href=""></a>app <span class="op">=</span> App(app_ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:50%;">
+<p><br> <img data-src="images/shinytitle.png" class="quarto-figure quarto-figure-center" style="width:100.0%" alt="Shiny python dashboard example"></p>
+</div></div>
+</section>
+<section id="make-the-title-pretty" class="slide level2">
+<h2>Make the title pretty</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><em>Shiny create -t basic-app</em> <br></p>
+<div id="48d0ba1b" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb14" data-code-line-numbers="|5-13|"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href=""></a><span class="im">from</span> shiny <span class="im">import</span> App, render, ui</span>
+<span id="cb14-2"><a href=""></a></span>
+<span id="cb14-3"><a href=""></a>app_ui <span class="op">=</span> ui.page_fillable(</span>
+<span id="cb14-4"><a href=""></a>    ui.page_auto(</span>
+<span id="cb14-5"><a href=""></a>        <span class="co"># Title of the application</span></span>
+<span id="cb14-6"><a href=""></a>        ui.h1(<span class="st">"Shiny Web Application Chatbot"</span>, style<span class="op">=</span><span class="st">"font-family: Arial, sans-serif; color: #0078B8; text-shadow: 2px 2px 4px #000000; font-size: 2.7em; text-align: center; padding: 20px;"</span>),</span>
+<span id="cb14-7"><a href=""></a>    )</span>
+<span id="cb14-8"><a href=""></a>)</span>
+<span id="cb14-9"><a href=""></a></span>
+<span id="cb14-10"><a href=""></a><span class="kw">def</span> server(<span class="bu">input</span>, output, session):</span>
+<span id="cb14-11"><a href=""></a>    <span class="at">@render.text</span></span>
+<span id="cb14-12"><a href=""></a>    <span class="kw">def</span> txt():</span>
+<span id="cb14-13"><a href=""></a>        <span class="cf">return</span> <span class="st">""</span></span>
+<span id="cb14-14"><a href=""></a></span>
+<span id="cb14-15"><a href=""></a>app <span class="op">=</span> App(app_ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:50%;">
+<p><br> <img data-src="images/shinytitlestyled.png" class="quarto-figure quarto-figure-center" style="width:100.0%" alt="Shiny python dashboard example"></p>
+</div></div>
+</section>
+<section id="add-a-description" class="slide level2">
+<h2>Add a description</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><em>Shiny create -t basic-app</em> <br></p>
+<div id="bdfcefac" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb15" data-code-line-numbers="|5-13|"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href=""></a><span class="im">from</span> shiny <span class="im">import</span> App, render, ui</span>
+<span id="cb15-2"><a href=""></a></span>
+<span id="cb15-3"><a href=""></a>app_ui <span class="op">=</span> ui.page_fillable(</span>
+<span id="cb15-4"><a href=""></a>    ui.page_auto(</span>
+<span id="cb15-5"><a href=""></a>        <span class="co"># Title of the application</span></span>
+<span id="cb15-6"><a href=""></a>        ui.h1(<span class="st">"Shiny Web Application Chatbot"</span>, style<span class="op">=</span><span class="st">"font-family: Arial, sans-serif; color: #0078B8; text-shadow: 2px 2px 4px #000000; font-size: 2.7em; text-align: center; padding: 20px;"</span>),</span>
+<span id="cb15-7"><a href=""></a>        <span class="co"># Description of the application</span></span>
+<span id="cb15-8"><a href=""></a>        ui.markdown(<span class="st">"This application allows you to ask questions and get answers using a conversational AI model."</span>),</span>
+<span id="cb15-9"><a href=""></a>    )</span>
+<span id="cb15-10"><a href=""></a>)</span>
+<span id="cb15-11"><a href=""></a></span>
+<span id="cb15-12"><a href=""></a><span class="kw">def</span> server(<span class="bu">input</span>, output, session):</span>
+<span id="cb15-13"><a href=""></a>    <span class="at">@render.text</span></span>
+<span id="cb15-14"><a href=""></a>    <span class="kw">def</span> txt():</span>
+<span id="cb15-15"><a href=""></a>        <span class="cf">return</span> <span class="st">""</span></span>
+<span id="cb15-16"><a href=""></a></span>
+<span id="cb15-17"><a href=""></a>app <span class="op">=</span> App(app_ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:50%;">
+<p><br> <img data-src="images/shinydesc.png" class="quarto-figure quarto-figure-center" style="width:100.0%" alt="Shiny python dashboard example"></p>
+</div></div>
+</section>
+<section id="add-a-box-for-user-to-input-question" class="slide level2">
+<h2>Add a box for user to input question</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div id="1999c783" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb16" data-code-line-numbers="|5-13|"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href=""></a><span class="im">from</span> shiny <span class="im">import</span> App, render, ui</span>
+<span id="cb16-2"><a href=""></a></span>
+<span id="cb16-3"><a href=""></a>app_ui <span class="op">=</span> ui.page_fillable(</span>
+<span id="cb16-4"><a href=""></a>    ui.page_auto(</span>
+<span id="cb16-5"><a href=""></a>        <span class="co"># Title of the application</span></span>
+<span id="cb16-6"><a href=""></a>        ui.h1(<span class="st">"Shiny Web Application Chatbot"</span>, style<span class="op">=</span><span class="st">"font-family: Arial, sans-serif; color: #0078B8; text-shadow: 2px 2px 4px #000000; font-size: 2.7em; text-align: center; padding: 20px;"</span>),</span>
+<span id="cb16-7"><a href=""></a>        <span class="co"># Description of the application</span></span>
+<span id="cb16-8"><a href=""></a>        ui.markdown(<span class="st">"This application allows you to ask questions and get answers using a conversational AI model."</span>),</span>
+<span id="cb16-9"><a href=""></a>        <span class="co"># Text input for user to enter their question</span></span>
+<span id="cb16-10"><a href=""></a>        ui.input_text(<span class="st">"question_input"</span>, <span class="st">"Please enter your question and press 'Send':"</span>, width<span class="op">=</span><span class="st">"100%"</span>),</span>
+<span id="cb16-11"><a href=""></a>    )</span>
+<span id="cb16-12"><a href=""></a>)</span>
+<span id="cb16-13"><a href=""></a></span>
+<span id="cb16-14"><a href=""></a><span class="kw">def</span> server(<span class="bu">input</span>, output, session):</span>
+<span id="cb16-15"><a href=""></a>    <span class="at">@render.text</span></span>
+<span id="cb16-16"><a href=""></a>    <span class="kw">def</span> txt():</span>
+<span id="cb16-17"><a href=""></a>        <span class="cf">return</span> <span class="st">""</span></span>
+<span id="cb16-18"><a href=""></a></span>
+<span id="cb16-19"><a href=""></a>app <span class="op">=</span> App(app_ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:50%;">
+<p><br> <img data-src="images/shinyuserinput.png" class="quarto-figure quarto-figure-center" style="width:100.0%" alt="Shiny python dashboard example"></p>
+</div></div>
+</section>
+<section id="add-a-send-button" class="slide level2">
+<h2>Add a send button</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div id="a576e5ce" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb17" data-code-line-numbers="|5-13|"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href=""></a><span class="im">from</span> shiny <span class="im">import</span> App, render, ui</span>
+<span id="cb17-2"><a href=""></a></span>
+<span id="cb17-3"><a href=""></a>app_ui <span class="op">=</span> ui.page_fillable(</span>
+<span id="cb17-4"><a href=""></a>    ui.page_auto(</span>
+<span id="cb17-5"><a href=""></a>        <span class="co"># Title of the application</span></span>
+<span id="cb17-6"><a href=""></a>        ui.h1(<span class="st">"Shiny Web Application Chatbot"</span>, style<span class="op">=</span><span class="st">"font-family: Arial, sans-serif; color: #0078B8; text-shadow: 2px 2px 4px #000000; font-size: 2.7em; text-align: center; padding: 20px;"</span>),</span>
+<span id="cb17-7"><a href=""></a>        <span class="co"># Description of the application</span></span>
+<span id="cb17-8"><a href=""></a>        ui.markdown(<span class="st">"This application allows you to ask questions and get answers using a conversational AI model."</span>),</span>
+<span id="cb17-9"><a href=""></a>        <span class="co"># Text input for user to enter their question</span></span>
+<span id="cb17-10"><a href=""></a>        ui.input_text(<span class="st">"question_input"</span>, <span class="st">"Please enter your question and press 'Send':"</span>, width<span class="op">=</span><span class="st">"100%"</span>),</span>
+<span id="cb17-11"><a href=""></a>        <span class="co"># Button to send the question</span></span>
+<span id="cb17-12"><a href=""></a>        ui.input_action_button(<span class="st">"send_button"</span>, <span class="st">"Send"</span>, class_<span class="op">=</span><span class="st">"btn-primary"</span>),    </span>
+<span id="cb17-13"><a href=""></a>    )</span>
+<span id="cb17-14"><a href=""></a>)</span>
+<span id="cb17-15"><a href=""></a></span>
+<span id="cb17-16"><a href=""></a><span class="kw">def</span> server(<span class="bu">input</span>, output, session):</span>
+<span id="cb17-17"><a href=""></a>    <span class="at">@render.text</span></span>
+<span id="cb17-18"><a href=""></a>    <span class="kw">def</span> txt():</span>
+<span id="cb17-19"><a href=""></a>        <span class="cf">return</span> <span class="st">""</span></span>
+<span id="cb17-20"><a href=""></a></span>
+<span id="cb17-21"><a href=""></a>app <span class="op">=</span> App(app_ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:50%;">
+<p><br> <img data-src="images/shinysendbutton.png" class="quarto-figure quarto-figure-center" style="width:100.0%" alt="Shiny python dashboard example"></p>
+</div></div>
+</section>
+<section id="add-an-area-for-the-answer-to-appear" class="slide level2">
+<h2>Add an area for the answer to appear</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div id="fe7b7b8c" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb18" data-code-line-numbers="|5-13|"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href=""></a><span class="im">from</span> shiny <span class="im">import</span> App, render, ui</span>
+<span id="cb18-2"><a href=""></a></span>
+<span id="cb18-3"><a href=""></a>app_ui <span class="op">=</span> ui.page_fillable(</span>
+<span id="cb18-4"><a href=""></a>    ui.page_auto(</span>
+<span id="cb18-5"><a href=""></a>        <span class="co"># Title of the application</span></span>
+<span id="cb18-6"><a href=""></a>        ui.h1(<span class="st">"Shiny Web Application Chatbot"</span>, style<span class="op">=</span><span class="st">"font-family: Arial, sans-serif; color: #0078B8; text-shadow: 2px 2px 4px #000000; font-size: 2.7em; text-align: center; padding: 20px;"</span>),</span>
+<span id="cb18-7"><a href=""></a>        <span class="co"># Description of the application</span></span>
+<span id="cb18-8"><a href=""></a>        ui.markdown(<span class="st">"This application allows you to ask questions and get answers using a conversational AI model."</span>),</span>
+<span id="cb18-9"><a href=""></a>        <span class="co"># Text input for user to enter their question</span></span>
+<span id="cb18-10"><a href=""></a>        ui.input_text(<span class="st">"question_input"</span>, <span class="st">"Please enter your question and press 'Send':"</span>, width<span class="op">=</span><span class="st">"100%"</span>),</span>
+<span id="cb18-11"><a href=""></a>        <span class="co"># Button to send the question</span></span>
+<span id="cb18-12"><a href=""></a>        ui.input_action_button(<span class="st">"send_button"</span>, <span class="st">"Send"</span>, class_<span class="op">=</span><span class="st">"btn-primary"</span>), </span>
+<span id="cb18-13"><a href=""></a>        <span class="co"># Card to display the answer</span></span>
+<span id="cb18-14"><a href=""></a>        ui.card(</span>
+<span id="cb18-15"><a href=""></a>            ui.output_text(<span class="st">"answer_output"</span>, inline<span class="op">=</span><span class="va">True</span>),</span>
+<span id="cb18-16"><a href=""></a>            style<span class="op">=</span><span class="st">"white-space: pre-wrap; width: 100%; margin: 3; padding: 10px;"</span></span>
+<span id="cb18-17"><a href=""></a>        )   </span>
+<span id="cb18-18"><a href=""></a>    )</span>
+<span id="cb18-19"><a href=""></a>)</span>
+<span id="cb18-20"><a href=""></a></span>
+<span id="cb18-21"><a href=""></a><span class="kw">def</span> server(<span class="bu">input</span>, output, session):</span>
+<span id="cb18-22"><a href=""></a>    <span class="at">@render.text</span></span>
+<span id="cb18-23"><a href=""></a>    <span class="kw">def</span> txt():</span>
+<span id="cb18-24"><a href=""></a>        <span class="cf">return</span> <span class="st">""</span></span>
+<span id="cb18-25"><a href=""></a></span>
+<span id="cb18-26"><a href=""></a>app <span class="op">=</span> App(app_ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:50%;">
+<p><br> <img data-src="images/shinyanswerarea.png" class="quarto-figure quarto-figure-center" style="width:100.0%" alt="Shiny python dashboard example"></p>
+</div></div>
+</section>
+<section id="update-the-server-to-get-response-from-openai" class="slide level2">
+<h2>Update the server to get response from OpenAI</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div id="b5826fc1" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb19" data-code-line-numbers="|5-13|"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href=""></a><span class="im">from</span> shiny <span class="im">import</span> App, render, ui, reactive</span>
+<span id="cb19-2"><a href=""></a><span class="im">import</span> conversationchatbot  </span>
+<span id="cb19-3"><a href=""></a></span>
+<span id="cb19-4"><a href=""></a>app_ui <span class="op">=</span> ui.page_fillable(</span>
+<span id="cb19-5"><a href=""></a>    ui.page_auto(</span>
+<span id="cb19-6"><a href=""></a>        <span class="co"># Title of the application</span></span>
+<span id="cb19-7"><a href=""></a>        ui.h1(<span class="st">"Shiny Web Application Chatbot"</span>, style<span class="op">=</span><span class="st">"font-family: Arial, sans-serif; color: #0078B8; text-shadow: 2px 2px 4px #000000; font-size: 2.7em; text-align: center; padding: 20px;"</span>),</span>
+<span id="cb19-8"><a href=""></a>        <span class="co"># Description of the application</span></span>
+<span id="cb19-9"><a href=""></a>        ui.markdown(<span class="st">"This application allows you to ask questions and get answers using a conversational AI model."</span>),</span>
+<span id="cb19-10"><a href=""></a>        <span class="co"># Text input for user to enter their question</span></span>
+<span id="cb19-11"><a href=""></a>        ui.input_text(<span class="st">"question_input"</span>, <span class="st">"Please enter your question and press 'Send':"</span>, width<span class="op">=</span><span class="st">"100%"</span>),</span>
+<span id="cb19-12"><a href=""></a>        <span class="co"># Button to send the question</span></span>
+<span id="cb19-13"><a href=""></a>        ui.input_action_button(<span class="st">"send_button"</span>, <span class="st">"Send"</span>, class_<span class="op">=</span><span class="st">"btn-primary"</span>), </span>
+<span id="cb19-14"><a href=""></a>        <span class="co"># Card to display the answer</span></span>
+<span id="cb19-15"><a href=""></a>        ui.card(</span>
+<span id="cb19-16"><a href=""></a>            ui.output_text(<span class="st">"answer_output"</span>, inline<span class="op">=</span><span class="va">True</span>),</span>
+<span id="cb19-17"><a href=""></a>            style<span class="op">=</span><span class="st">"white-space: pre-wrap; width: 100%; margin: 3; padding: 10px;"</span></span>
+<span id="cb19-18"><a href=""></a>        )   </span>
+<span id="cb19-19"><a href=""></a>    )</span>
+<span id="cb19-20"><a href=""></a>)</span>
+<span id="cb19-21"><a href=""></a></span>
+<span id="cb19-22"><a href=""></a><span class="kw">def</span> server(<span class="bu">input</span>, output, session):</span>
+<span id="cb19-23"><a href=""></a>    <span class="co"># Define the output for the answer</span></span>
+<span id="cb19-24"><a href=""></a>    <span class="at">@output</span></span>
+<span id="cb19-25"><a href=""></a>    <span class="at">@render.text</span></span>
+<span id="cb19-26"><a href=""></a>    <span class="at">@reactive.event</span>(<span class="bu">input</span>.send_button, ignore_none<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb19-27"><a href=""></a>    <span class="kw">def</span> answer_output():</span>
+<span id="cb19-28"><a href=""></a>        <span class="co"># Get the user's question from the input</span></span>
+<span id="cb19-29"><a href=""></a>        question <span class="op">=</span> <span class="bu">input</span>.question_input()</span>
+<span id="cb19-30"><a href=""></a>        <span class="cf">if</span> question:</span>
+<span id="cb19-31"><a href=""></a>            <span class="co"># Get the response from the conversational AI model using the provided API key</span></span>
+<span id="cb19-32"><a href=""></a>            response <span class="op">=</span> conversationchatbot.ask_question(question)</span>
+<span id="cb19-33"><a href=""></a>            <span class="cf">return</span> response</span>
+<span id="cb19-34"><a href=""></a>        <span class="cf">else</span>:</span>
+<span id="cb19-35"><a href=""></a>            <span class="co"># Return placeholder text if no question is entered</span></span>
+<span id="cb19-36"><a href=""></a>            <span class="cf">return</span> <span class="st">"....."</span></span>
+<span id="cb19-37"><a href=""></a></span>
+<span id="cb19-38"><a href=""></a>app <span class="op">=</span> App(app_ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:50%;">
+<p><br> <img data-src="images/shinyquestionanswer_gif.gif" class="quarto-figure quarto-figure-center" style="width:100.0%" alt="Shiny python dashboard example"></p>
+</div></div>
+</section></section>
+<section id="the-chatbot-is-ready-and-served-through-our-shiny-application.-you-did-it" class="title-slide slide level1 center">
+<h1>The chatbot is ready and served through our shiny application. You did it!</h1>
+
+</section>
+
+<section>
+<section id="now-lets-have-the-user-input-their-api-key-in-the-shiny-dashboard" class="title-slide slide level1 center">
+<h1>Now, let’s have the user input their API key in the Shiny dashboard</h1>
+
+</section>
+<section id="update-conversation-chatbot-function" class="slide level2">
+<h2>Update conversation chatbot function</h2>
+<h3 id="original-function-with-user-question-input-as-parameter">Original function with user question input as parameter</h3>
+<div class="fragment">
+<div id="450ed1fe" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb20" data-code-line-numbers="|1-3|5-6|8-9|11|12-13|15-19|21-22|24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href=""></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
+<span id="cb20-2"><a href=""></a><span class="im">import</span> os</span>
+<span id="cb20-3"><a href=""></a><span class="im">import</span> dotenv</span>
+<span id="cb20-4"><a href=""></a></span>
+<span id="cb20-5"><a href=""></a>dotenv.load_dotenv()</span>
+<span id="cb20-6"><a href=""></a>client <span class="op">=</span> OpenAI(api_key<span class="op">=</span>os.getenv(<span class="st">'OPENAI_API'</span>))</span>
+<span id="cb20-7"><a href=""></a></span>
+<span id="cb20-8"><a href=""></a><span class="co"># Create a role instruction for the bot</span></span>
+<span id="cb20-9"><a href=""></a>conversation <span class="op">=</span> [{<span class="st">"role"</span>: <span class="st">"system"</span>, <span class="st">"content"</span>: <span class="st">"You are an assistant."</span>}]</span>
+<span id="cb20-10"><a href=""></a></span>
+<span id="cb20-11"><a href=""></a><span class="kw">def</span> ask_question(inputquestion):</span>
+<span id="cb20-12"><a href=""></a>    <span class="co"># Append the user's question to the conversation array</span></span>
+<span id="cb20-13"><a href=""></a>    conversation.append({<span class="st">"role"</span>: <span class="st">"user"</span>,<span class="st">"content"</span>: inputquestion})</span>
+<span id="cb20-14"><a href=""></a></span>
+<span id="cb20-15"><a href=""></a>    <span class="co"># Request gpt-3.5-turbo for chat completion or a response</span></span>
+<span id="cb20-16"><a href=""></a>    response <span class="op">=</span> client.chat.completions.create(</span>
+<span id="cb20-17"><a href=""></a>        model<span class="op">=</span><span class="st">"gpt-3.5-turbo"</span>,</span>
+<span id="cb20-18"><a href=""></a>        messages<span class="op">=</span>conversation</span>
+<span id="cb20-19"><a href=""></a>    )</span>
+<span id="cb20-20"><a href=""></a></span>
+<span id="cb20-21"><a href=""></a>    <span class="co"># Access the response from the API to display it</span></span>
+<span id="cb20-22"><a href=""></a>    assistant_response <span class="op">=</span> response.choices[<span class="dv">0</span>].message.content</span>
+<span id="cb20-23"><a href=""></a>    </span>
+<span id="cb20-24"><a href=""></a>    <span class="cf">return</span> assistant_response</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="update-conversation-chatbot-function-1" class="slide level2">
+<h2>Update conversation chatbot function</h2>
+<h3 id="add-api-key-as-input-parameter-to-the-function">Add API key as input parameter to the function</h3>
+<div class="fragment">
+<div id="8956d180" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb21" data-code-line-numbers="|1-3|5-6|8-9|11|12-13|15-19|21-22|24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href=""></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
+<span id="cb21-2"><a href=""></a><span class="im">import</span> os</span>
+<span id="cb21-3"><a href=""></a><span class="im">import</span> dotenv</span>
+<span id="cb21-4"><a href=""></a></span>
+<span id="cb21-5"><a href=""></a>dotenv.load_dotenv()</span>
+<span id="cb21-6"><a href=""></a></span>
+<span id="cb21-7"><a href=""></a><span class="co"># Create an instruction for the bot</span></span>
+<span id="cb21-8"><a href=""></a>conversation <span class="op">=</span> [{<span class="st">"role"</span>: <span class="st">"system"</span>, <span class="st">"content"</span>: <span class="st">"You are an assistant."</span>}]</span>
+<span id="cb21-9"><a href=""></a></span>
+<span id="cb21-10"><a href=""></a><span class="kw">def</span> ask_question(inputquestion, api_key):</span>
+<span id="cb21-11"><a href=""></a>    <span class="co"># Initialize the OpenAI client with the provided API key</span></span>
+<span id="cb21-12"><a href=""></a>    client <span class="op">=</span> OpenAI(api_key<span class="op">=</span>api_key)</span>
+<span id="cb21-13"><a href=""></a></span>
+<span id="cb21-14"><a href=""></a>    <span class="co"># Append the user's question to the conversation array</span></span>
+<span id="cb21-15"><a href=""></a>    conversation.append({<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: inputquestion})</span>
+<span id="cb21-16"><a href=""></a></span>
+<span id="cb21-17"><a href=""></a>    <span class="co"># Request gpt-3.5-turbo for chat completion or a response</span></span>
+<span id="cb21-18"><a href=""></a>    response <span class="op">=</span> client.chat.completions.create(</span>
+<span id="cb21-19"><a href=""></a>        model<span class="op">=</span><span class="st">"gpt-3.5-turbo"</span>,</span>
+<span id="cb21-20"><a href=""></a>        messages<span class="op">=</span>conversation</span>
+<span id="cb21-21"><a href=""></a>    )</span>
+<span id="cb21-22"><a href=""></a></span>
+<span id="cb21-23"><a href=""></a>    <span class="co"># Access the response from the API to display it</span></span>
+<span id="cb21-24"><a href=""></a>    assistant_response <span class="op">=</span> response.choices[<span class="dv">0</span>].message.content</span>
+<span id="cb21-25"><a href=""></a></span>
+<span id="cb21-26"><a href=""></a>    <span class="cf">return</span> assistant_response</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="update-conversation-chatbot-function-2" class="slide level2">
+<h2>Update conversation chatbot function</h2>
+<h3 id="test-the-function">Test the function</h3>
+<div class="fragment">
+<div id="ec8bd02c" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href=""></a>ask_question(</span>
+<span id="cb22-2"><a href=""></a>    <span class="st">"Where is the moon?"</span></span>
+<span id="cb22-3"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="fragment">
+<div title="Error">
+<div class="callout callout-warning callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Error</strong></p>
+</div>
+<div class="callout-content">
+<p>TypeError: ask_question() missing 1 required positional argument: ‘api_key’</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div id="789d752e" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href=""></a>ask_question(</span>
+<span id="cb23-2"><a href=""></a>    <span class="st">"Where is the moon?"</span>, </span>
+<span id="cb23-3"><a href=""></a>    os.getenv(<span class="st">'OPENAI_API_KEY'</span>)</span>
+<span id="cb23-4"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="fragment">
+<div title="function output">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>function output</strong></p>
+</div>
+<div class="callout-content">
+<p>“The moon is currently in the sky, orbiting around Earth. Its exact position in the sky will depend on your location and the current time. If you are looking for more specific information about the moon’s position, you can use a stargazing app or website to track its location in real-time.”</p>
+</div>
+</div>
 </div>
 </div>
 </div>
 </section>
-<section id="connect-with-openai-client-1" class="slide level2">
-<h2>Connect with OpenAI client</h2>
+<section id="update-the-app-for-api-key-input" class="slide level2">
+<h2>Update the app for API key input</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div id="0231e92f" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb24" data-code-line-numbers="|5-13|"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href=""></a><span class="im">from</span> shiny <span class="im">import</span> App, render, ui, reactive</span>
+<span id="cb24-2"><a href=""></a><span class="im">import</span> conversationchatbot  </span>
+<span id="cb24-3"><a href=""></a></span>
+<span id="cb24-4"><a href=""></a>app_ui <span class="op">=</span> ui.page_fillable(</span>
+<span id="cb24-5"><a href=""></a>    ui.page_auto(</span>
+<span id="cb24-6"><a href=""></a>        <span class="co"># Title of the application</span></span>
+<span id="cb24-7"><a href=""></a>        ui.h1(<span class="st">"Shiny Web Application Chatbot"</span>, style<span class="op">=</span><span class="st">"font-family: Arial, sans-serif; color: #0078B8; text-shadow: 2px 2px 4px #000000; font-size: 2.7em; text-align: center; padding: 20px;"</span>),</span>
+<span id="cb24-8"><a href=""></a>        <span class="co"># Description of the application</span></span>
+<span id="cb24-9"><a href=""></a>        ui.markdown(<span class="st">"This application allows you to ask questions and get answers using a conversational AI model."</span>),</span>
+<span id="cb24-10"><a href=""></a>        <span class="co"># Click the button to add the API key</span></span>
+<span id="cb24-11"><a href=""></a>        ui.card(ui.input_action_button(<span class="st">"apikey"</span>, <span class="st">"Enter OpenAI API Key to get started"</span>, class_<span class="op">=</span><span class="st">"btn-warning"</span>)), </span>
+<span id="cb24-12"><a href=""></a>        <span class="co"># Text input for user to enter their question</span></span>
+<span id="cb24-13"><a href=""></a>        ui.input_text(<span class="st">"question_input"</span>, <span class="st">"Please enter your question and press 'Send':"</span>, width<span class="op">=</span><span class="st">"100%"</span>),</span>
+<span id="cb24-14"><a href=""></a>        <span class="co"># Button to send the question</span></span>
+<span id="cb24-15"><a href=""></a>        ui.input_action_button(<span class="st">"send_button"</span>, <span class="st">"Send"</span>, class_<span class="op">=</span><span class="st">"btn-primary"</span>), </span>
+<span id="cb24-16"><a href=""></a>        <span class="co"># Card to display the answer</span></span>
+<span id="cb24-17"><a href=""></a>        ui.card(</span>
+<span id="cb24-18"><a href=""></a>            ui.output_text(<span class="st">"answer_output"</span>, inline<span class="op">=</span><span class="va">True</span>),</span>
+<span id="cb24-19"><a href=""></a>            style<span class="op">=</span><span class="st">"white-space: pre-wrap; width: 100%; margin: 3; padding: 10px;"</span></span>
+<span id="cb24-20"><a href=""></a>        )   </span>
+<span id="cb24-21"><a href=""></a>    )</span>
+<span id="cb24-22"><a href=""></a>)</span>
+<span id="cb24-23"><a href=""></a></span>
+<span id="cb24-24"><a href=""></a><span class="kw">def</span> server(<span class="bu">input</span>, output, session):</span>
+<span id="cb24-25"><a href=""></a>    <span class="co"># Define the output for the answer</span></span>
+<span id="cb24-26"><a href=""></a>    <span class="at">@output</span></span>
+<span id="cb24-27"><a href=""></a>    <span class="at">@render.text</span></span>
+<span id="cb24-28"><a href=""></a>    <span class="at">@reactive.event</span>(<span class="bu">input</span>.send_button, ignore_none<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb24-29"><a href=""></a>    <span class="kw">def</span> answer_output():</span>
+<span id="cb24-30"><a href=""></a>        <span class="co"># Get the user's question from the input</span></span>
+<span id="cb24-31"><a href=""></a>        question <span class="op">=</span> <span class="bu">input</span>.question_input()</span>
+<span id="cb24-32"><a href=""></a>        <span class="cf">if</span> question:</span>
+<span id="cb24-33"><a href=""></a>            <span class="co"># Get the response from the conversational AI model using the provided API key</span></span>
+<span id="cb24-34"><a href=""></a>            response <span class="op">=</span> conversationchatbot.ask_question(question)</span>
+<span id="cb24-35"><a href=""></a>            <span class="cf">return</span> response</span>
+<span id="cb24-36"><a href=""></a>        <span class="cf">else</span>:</span>
+<span id="cb24-37"><a href=""></a>            <span class="co"># Return placeholder text if no question is entered</span></span>
+<span id="cb24-38"><a href=""></a>            <span class="cf">return</span> <span class="st">"....."</span></span>
+<span id="cb24-39"><a href=""></a></span>
+<span id="cb24-40"><a href=""></a>app <span class="op">=</span> App(app_ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:50%;">
+<p><br> <img data-src="images/shinyenterapikeybutton.png" class="quarto-figure quarto-figure-center" style="width:100.0%" alt="Shiny python dashboard example"></p>
+</div></div>
+</section>
+<section id="update-the-app-for-api-key-input-1" class="slide level2">
+<h2>Update the app for API key input</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div id="dd3164d3" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb25" data-code-line-numbers="|5-13|"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href=""></a><span class="im">from</span> shiny <span class="im">import</span> App, render, ui, reactive</span>
+<span id="cb25-2"><a href=""></a><span class="im">import</span> conversationchatbot  </span>
+<span id="cb25-3"><a href=""></a></span>
+<span id="cb25-4"><a href=""></a>app_ui <span class="op">=</span> ui.page_fillable(</span>
+<span id="cb25-5"><a href=""></a>    ui.page_auto(</span>
+<span id="cb25-6"><a href=""></a>        <span class="co"># Title of the application</span></span>
+<span id="cb25-7"><a href=""></a>        ui.h1(<span class="st">"Shiny Web Application Chatbot"</span>, style<span class="op">=</span><span class="st">"font-family: Arial, sans-serif; color: #0078B8; text-shadow: 2px 2px 4px #000000; font-size: 2.7em; text-align: center; padding: 20px;"</span>),</span>
+<span id="cb25-8"><a href=""></a>        <span class="co"># Description of the application</span></span>
+<span id="cb25-9"><a href=""></a>        ui.markdown(<span class="st">"This application allows you to ask questions and get answers using a conversational AI model."</span>),</span>
+<span id="cb25-10"><a href=""></a>        <span class="co"># Click the button to add the API key</span></span>
+<span id="cb25-11"><a href=""></a>        ui.card(ui.input_action_button(<span class="st">"apikey"</span>, <span class="st">"Enter OpenAI API Key to get started"</span>, class_<span class="op">=</span><span class="st">"btn-warning"</span>)), </span>
+<span id="cb25-12"><a href=""></a>        <span class="co"># Text input for user to enter their question</span></span>
+<span id="cb25-13"><a href=""></a>        ui.input_text(<span class="st">"question_input"</span>, <span class="st">"Please enter your question and press 'Send':"</span>, width<span class="op">=</span><span class="st">"100%"</span>),</span>
+<span id="cb25-14"><a href=""></a>        <span class="co"># Button to send the question</span></span>
+<span id="cb25-15"><a href=""></a>        ui.input_action_button(<span class="st">"send_button"</span>, <span class="st">"Send"</span>, class_<span class="op">=</span><span class="st">"btn-primary"</span>), </span>
+<span id="cb25-16"><a href=""></a>        <span class="co"># Card to display the answer</span></span>
+<span id="cb25-17"><a href=""></a>        ui.card(</span>
+<span id="cb25-18"><a href=""></a>            ui.output_text(<span class="st">"answer_output"</span>, inline<span class="op">=</span><span class="va">True</span>),</span>
+<span id="cb25-19"><a href=""></a>            style<span class="op">=</span><span class="st">"white-space: pre-wrap; width: 100%; margin: 3; padding: 10px;"</span></span>
+<span id="cb25-20"><a href=""></a>        )   </span>
+<span id="cb25-21"><a href=""></a>    )</span>
+<span id="cb25-22"><a href=""></a>)</span>
+<span id="cb25-23"><a href=""></a></span>
+<span id="cb25-24"><a href=""></a><span class="kw">def</span> server(<span class="bu">input</span>, output, session):</span>
+<span id="cb25-25"><a href=""></a>    <span class="co"># Define the output for the answer</span></span>
+<span id="cb25-26"><a href=""></a>    <span class="at">@output</span></span>
+<span id="cb25-27"><a href=""></a>    <span class="at">@render.text</span></span>
+<span id="cb25-28"><a href=""></a>    <span class="at">@reactive.event</span>(<span class="bu">input</span>.send_button, ignore_none<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb25-29"><a href=""></a>    <span class="kw">def</span> answer_output():</span>
+<span id="cb25-30"><a href=""></a>        <span class="co"># Get the user's question from the input</span></span>
+<span id="cb25-31"><a href=""></a>        question <span class="op">=</span> <span class="bu">input</span>.question_input()</span>
+<span id="cb25-32"><a href=""></a>        <span class="cf">if</span> question:</span>
+<span id="cb25-33"><a href=""></a>            <span class="co"># Get the response from the conversational AI model using the provided API key</span></span>
+<span id="cb25-34"><a href=""></a>            response <span class="op">=</span> conversationchatbot.ask_question(question)</span>
+<span id="cb25-35"><a href=""></a>            <span class="cf">return</span> response</span>
+<span id="cb25-36"><a href=""></a>        <span class="cf">else</span>:</span>
+<span id="cb25-37"><a href=""></a>            <span class="co"># Return placeholder text if no question is entered</span></span>
+<span id="cb25-38"><a href=""></a>            <span class="cf">return</span> <span class="st">"....."</span></span>
+<span id="cb25-39"><a href=""></a></span>
+<span id="cb25-40"><a href=""></a>app <span class="op">=</span> App(app_ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:50%;">
+<p><br> <img data-src="images/shinyapikeymissing.png" class="quarto-figure quarto-figure-center" style="width:100.0%" alt="Shiny python dashboard example"></p>
+</div></div>
+</section>
+<section id="clean-up-the-api-key-error" class="slide level2">
+<h2>Clean up the API key error</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div id="17167207" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb26" data-code-line-numbers="|5-13|"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href=""></a><span class="im">from</span> shiny <span class="im">import</span> App, render, ui, reactive</span>
+<span id="cb26-2"><a href=""></a><span class="im">import</span> conversationchatbot  </span>
+<span id="cb26-3"><a href=""></a></span>
+<span id="cb26-4"><a href=""></a>app_ui <span class="op">=</span> ui.page_fillable(</span>
+<span id="cb26-5"><a href=""></a>    ui.page_auto(</span>
+<span id="cb26-6"><a href=""></a>        <span class="co"># Title of the application</span></span>
+<span id="cb26-7"><a href=""></a>        ui.h1(<span class="st">"Shiny Web Application Chatbot"</span>, style<span class="op">=</span><span class="st">"font-family: Arial, sans-serif; color: #0078B8; text-shadow: 2px 2px 4px #000000; font-size: 2.7em; text-align: center; padding: 20px;"</span>),</span>
+<span id="cb26-8"><a href=""></a>        <span class="co"># Description of the application</span></span>
+<span id="cb26-9"><a href=""></a>        ui.markdown(<span class="st">"This application allows you to ask questions and get answers using a conversational AI model."</span>),</span>
+<span id="cb26-10"><a href=""></a>        <span class="co"># Click the button to add the API key</span></span>
+<span id="cb26-11"><a href=""></a>        ui.card(ui.input_action_button(<span class="st">"apikey"</span>, <span class="st">"Enter OpenAI API Key to get started"</span>, class_<span class="op">=</span><span class="st">"btn-warning"</span>)), </span>
+<span id="cb26-12"><a href=""></a>        <span class="co"># Text input for user to enter their question</span></span>
+<span id="cb26-13"><a href=""></a>        ui.input_text(<span class="st">"question_input"</span>, <span class="st">"Please enter your question and press 'Send':"</span>, width<span class="op">=</span><span class="st">"100%"</span>),</span>
+<span id="cb26-14"><a href=""></a>        <span class="co"># Button to send the question</span></span>
+<span id="cb26-15"><a href=""></a>        ui.input_action_button(<span class="st">"send_button"</span>, <span class="st">"Send"</span>, class_<span class="op">=</span><span class="st">"btn-primary"</span>), </span>
+<span id="cb26-16"><a href=""></a>        <span class="co"># Card to display the answer</span></span>
+<span id="cb26-17"><a href=""></a>        ui.card(</span>
+<span id="cb26-18"><a href=""></a>            ui.output_text(<span class="st">"answer_output"</span>, inline<span class="op">=</span><span class="va">True</span>),</span>
+<span id="cb26-19"><a href=""></a>            style<span class="op">=</span><span class="st">"white-space: pre-wrap; width: 100%; margin: 3; padding: 10px;"</span></span>
+<span id="cb26-20"><a href=""></a>        )   </span>
+<span id="cb26-21"><a href=""></a>    )</span>
+<span id="cb26-22"><a href=""></a>)</span>
+<span id="cb26-23"><a href=""></a></span>
+<span id="cb26-24"><a href=""></a><span class="kw">def</span> server(<span class="bu">input</span>, output, session):</span>
+<span id="cb26-25"><a href=""></a>    <span class="co"># Define the output for the answer</span></span>
+<span id="cb26-26"><a href=""></a>    <span class="at">@output</span></span>
+<span id="cb26-27"><a href=""></a>    <span class="at">@render.text</span></span>
+<span id="cb26-28"><a href=""></a>    <span class="at">@reactive.event</span>(<span class="bu">input</span>.send_button, ignore_none<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb26-29"><a href=""></a>    <span class="kw">def</span> answer_output():</span>
+<span id="cb26-30"><a href=""></a>        <span class="co"># Get the user's question from the input</span></span>
+<span id="cb26-31"><a href=""></a>        question <span class="op">=</span> <span class="bu">input</span>.question_input()</span>
+<span id="cb26-32"><a href=""></a>        <span class="cf">if</span> question:</span>
+<span id="cb26-33"><a href=""></a>            <span class="co"># Check if the API key has been provided</span></span>
+<span id="cb26-34"><a href=""></a>            <span class="cf">if</span> <span class="kw">not</span> <span class="bu">input</span>.apikey(): </span>
+<span id="cb26-35"><a href=""></a>                <span class="cf">return</span> <span class="st">"Please input your OpenAI API key"</span></span>
+<span id="cb26-36"><a href=""></a>            <span class="cf">else</span>: </span>
+<span id="cb26-37"><a href=""></a>                <span class="co"># Get the response from the conversational AI model using the provided API key</span></span>
+<span id="cb26-38"><a href=""></a>                response <span class="op">=</span> conversationchatbot.ask_question(question, api_key<span class="op">=</span><span class="bu">input</span>.password())</span>
+<span id="cb26-39"><a href=""></a>                <span class="cf">return</span> response</span>
+<span id="cb26-40"><a href=""></a>        <span class="cf">else</span>:</span>
+<span id="cb26-41"><a href=""></a>            <span class="co"># Return placeholder text if no question is entered</span></span>
+<span id="cb26-42"><a href=""></a>            <span class="cf">return</span> <span class="st">"....."</span></span>
+<span id="cb26-43"><a href=""></a></span>
+<span id="cb26-44"><a href=""></a>app <span class="op">=</span> App(app_ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:50%;">
+<p><br> <img data-src="images/shinyapikeymissingclean.png" class="quarto-figure quarto-figure-center" style="width:100.0%" alt="Shiny python dashboard example"></p>
+</div></div>
+</section>
+<section id="create-a-modal-for-user-to-input-api-key" class="slide level2">
+<h2>Create a modal for user to input API key</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div id="4322b255" class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb27" data-code-line-numbers="|5-13|"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href=""></a><span class="im">from</span> shiny <span class="im">import</span> App, render, ui, reactive</span>
+<span id="cb27-2"><a href=""></a><span class="im">import</span> conversationchatbot  </span>
+<span id="cb27-3"><a href=""></a></span>
+<span id="cb27-4"><a href=""></a>app_ui <span class="op">=</span> ui.page_fillable(</span>
+<span id="cb27-5"><a href=""></a>    ui.page_auto(</span>
+<span id="cb27-6"><a href=""></a>        <span class="co"># Title of the application</span></span>
+<span id="cb27-7"><a href=""></a>        ui.h1(<span class="st">"Shiny Web Application Chatbot"</span>, style<span class="op">=</span><span class="st">"font-family: Arial, sans-serif; color: #0078B8; text-shadow: 2px 2px 4px #000000; font-size: 2.7em; text-align: center; padding: 20px;"</span>),</span>
+<span id="cb27-8"><a href=""></a>        <span class="co"># Description of the application</span></span>
+<span id="cb27-9"><a href=""></a>        ui.markdown(<span class="st">"This application allows you to ask questions and get answers using a conversational AI model."</span>),</span>
+<span id="cb27-10"><a href=""></a>        <span class="co"># Click the button to add the API key</span></span>
+<span id="cb27-11"><a href=""></a>        ui.card(ui.input_action_button(<span class="st">"apikey"</span>, <span class="st">"Enter OpenAI API Key to get started"</span>, class_<span class="op">=</span><span class="st">"btn-warning"</span>)), </span>
+<span id="cb27-12"><a href=""></a>        <span class="co"># Text input for user to enter their question</span></span>
+<span id="cb27-13"><a href=""></a>        ui.input_text(<span class="st">"question_input"</span>, <span class="st">"Please enter your question and press 'Send':"</span>, width<span class="op">=</span><span class="st">"100%"</span>),</span>
+<span id="cb27-14"><a href=""></a>        <span class="co"># Button to send the question</span></span>
+<span id="cb27-15"><a href=""></a>        ui.input_action_button(<span class="st">"send_button"</span>, <span class="st">"Send"</span>, class_<span class="op">=</span><span class="st">"btn-primary"</span>), </span>
+<span id="cb27-16"><a href=""></a>        <span class="co"># Card to display the answer</span></span>
+<span id="cb27-17"><a href=""></a>        ui.card(</span>
+<span id="cb27-18"><a href=""></a>            ui.output_text(<span class="st">"answer_output"</span>, inline<span class="op">=</span><span class="va">True</span>),</span>
+<span id="cb27-19"><a href=""></a>            style<span class="op">=</span><span class="st">"white-space: pre-wrap; width: 100%; margin: 3; padding: 10px;"</span></span>
+<span id="cb27-20"><a href=""></a>        )   </span>
+<span id="cb27-21"><a href=""></a>    )</span>
+<span id="cb27-22"><a href=""></a>)</span>
+<span id="cb27-23"><a href=""></a></span>
+<span id="cb27-24"><a href=""></a><span class="kw">def</span> server(<span class="bu">input</span>, output, session):</span>
+<span id="cb27-25"><a href=""></a>    <span class="co"># Display a modal for API key input when the 'apikey' input is triggered</span></span>
+<span id="cb27-26"><a href=""></a>    <span class="at">@reactive.effect</span></span>
+<span id="cb27-27"><a href=""></a>    <span class="at">@reactive.event</span>(<span class="bu">input</span>.apikey)</span>
+<span id="cb27-28"><a href=""></a>    <span class="kw">def</span> _():</span>
+<span id="cb27-29"><a href=""></a>        m <span class="op">=</span> ui.modal(  </span>
+<span id="cb27-30"><a href=""></a>            <span class="co"># Input field for the OpenAI API key</span></span>
+<span id="cb27-31"><a href=""></a>            ui.input_password(<span class="st">"password"</span>, <span class="st">"OpenAI API key:"</span>),</span>
+<span id="cb27-32"><a href=""></a>            <span class="co"># Button to connect to OpenAI</span></span>
+<span id="cb27-33"><a href=""></a>            ui.input_action_button(<span class="st">"connect"</span>, <span class="st">"Connect to OpenAI"</span>),</span>
+<span id="cb27-34"><a href=""></a>            easy_close<span class="op">=</span><span class="va">True</span>,  </span>
+<span id="cb27-35"><a href=""></a>            footer<span class="op">=</span><span class="va">None</span>,  </span>
+<span id="cb27-36"><a href=""></a>        )  </span>
+<span id="cb27-37"><a href=""></a>        ui.modal_show(m)  <span class="co"># Show the modal</span></span>
+<span id="cb27-38"><a href=""></a>        </span>
+<span id="cb27-39"><a href=""></a>    <span class="co"># Remove the modal when the 'connect' button is pressed</span></span>
+<span id="cb27-40"><a href=""></a>    <span class="at">@reactive.effect</span>  </span>
+<span id="cb27-41"><a href=""></a>    <span class="at">@reactive.event</span>(<span class="bu">input</span>.<span class="ex">connect</span>)  </span>
+<span id="cb27-42"><a href=""></a>    <span class="kw">def</span> __():  </span>
+<span id="cb27-43"><a href=""></a>        ui.modal_remove()  <span class="co"># Hide the modal</span></span>
+<span id="cb27-44"><a href=""></a>    </span>
+<span id="cb27-45"><a href=""></a>    <span class="co"># Define the output for the answer</span></span>
+<span id="cb27-46"><a href=""></a>    <span class="at">@output</span></span>
+<span id="cb27-47"><a href=""></a>    <span class="at">@render.text</span></span>
+<span id="cb27-48"><a href=""></a>    <span class="at">@reactive.event</span>(<span class="bu">input</span>.send_button, ignore_none<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb27-49"><a href=""></a>    <span class="kw">def</span> answer_output():</span>
+<span id="cb27-50"><a href=""></a>        <span class="co"># Get the user's question from the input</span></span>
+<span id="cb27-51"><a href=""></a>        question <span class="op">=</span> <span class="bu">input</span>.question_input()</span>
+<span id="cb27-52"><a href=""></a>        <span class="cf">if</span> question:</span>
+<span id="cb27-53"><a href=""></a>            <span class="co"># Check if the API key has been provided</span></span>
+<span id="cb27-54"><a href=""></a>            <span class="cf">if</span> <span class="kw">not</span> <span class="bu">input</span>.apikey(): </span>
+<span id="cb27-55"><a href=""></a>                <span class="cf">return</span> <span class="st">"Please input your OpenAI API key"</span></span>
+<span id="cb27-56"><a href=""></a>            <span class="cf">else</span>: </span>
+<span id="cb27-57"><a href=""></a>                <span class="co"># Get the response from the conversational AI model using the provided API key</span></span>
+<span id="cb27-58"><a href=""></a>                response <span class="op">=</span> conversationchatbot.ask_question(question, api_key<span class="op">=</span><span class="bu">input</span>.password())</span>
+<span id="cb27-59"><a href=""></a>                <span class="cf">return</span> response</span>
+<span id="cb27-60"><a href=""></a>        <span class="cf">else</span>:</span>
+<span id="cb27-61"><a href=""></a>            <span class="co"># Return placeholder text if no question is entered</span></span>
+<span id="cb27-62"><a href=""></a>            <span class="cf">return</span> <span class="st">"....."</span></span>
+<span id="cb27-63"><a href=""></a></span>
+<span id="cb27-64"><a href=""></a>app <span class="op">=</span> App(app_ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:50%;">
+<p><br> <img data-src="images/shinyapikeymodalexit_gif.gif" class="quarto-figure quarto-figure-center" style="width:100.0%" alt="Shiny python dashboard example"></p>
+</div></div>
+</section>
+<section id="i-know-that-was-a-lot-of-information" class="slide level2">
+<h2>I know that was a lot of information!!!</h2>
 <p><br></p>
-<div class="fragment">
-<p><em>conversationchatbot.py file</em> <br></p>
-<div id="27cd8e49" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb17" data-code-line-numbers="|1|6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href=""></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
-<span id="cb17-2"><a href=""></a><span class="im">import</span> os</span>
-<span id="cb17-3"><a href=""></a><span class="im">import</span> dotenv</span>
-<span id="cb17-4"><a href=""></a></span>
-<span id="cb17-5"><a href=""></a>dotenv.load_dotenv()</span>
-<span id="cb17-6"><a href=""></a>client <span class="op">=</span> OpenAI(api_key<span class="op">=</span>os.getenv(<span class="st">'OPENAI_API_KEY'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+<img data-src="images/taylorscreaming.gif" class="quarto-figure quarto-figure-center r-stretch" style="width:100.0%" alt="TSwift screaming"></section></section>
+<section id="and-there-is-more-you-can-do-with-chatbots-in-shiny" class="title-slide slide level1 center">
+<h1>And there is more you can do with chatbots in Shiny</h1>
+
+</section>
+
+<section>
+<section id="such-as-make-it-answer-questions-using-your-own-dashboard-documentation" class="title-slide slide level1 center">
+<h1>Such as make it answer questions using your own dashboard documentation</h1>
+
+</section>
+<section id="resources" class="slide level2">
+<h2>Resources</h2>
+<ul>
+<li><strong>Everything related to this presentation</strong>
+<ul>
+<li><a href="https://bit.ly/shinyforpythonslides">Short Link to presentation - https://bit.ly/shinyforpythonslides</a></li>
+<li><a href="https://www.apreshill.com/blog/2022-04-we-dont-talk-about-quarto/">Shiny code</a></li>
+<li><a href="">“Who is the Goodest Doggy” App</a></li>
+</ul></li>
+<li><strong>Additional Peeps, resources and events to follow</strong>
+<ul>
+<li><a href="https://www.linkedin.com/in/gshotwell/">Gordon Shotwell</a></li>
+<li><a href="https://www.linkedin.com/posts/rachaeldempsey_were-so-excited-to-share-a-quicker-and-simpler-activity-7166453499340259328-__Me?utm_source=share&amp;utm_medium=member_desktop">Upcoming Shiny Express webinar by Winston Chang</a></li>
+<li><a href="https://shiny.posit.co/py/docs/overview.html">Shiny for python documentation</a></li>
+<li><a href="https://shiny.posit.co/py/docs/deploy.html">Deploying Shiny for Python application</a></li>
+</ul></li>
+</ul>
+</section>
+<section id="lets-connect" class="slide level2">
+<h2>Let’s connect</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Mastodon: <a href="https://fosstodon.org/@deepsha">@deepsha</a></p>
+<p>LinkedIn: <a href="https://bit.ly/deepshamenghani">deepshamenghani</a></p>
+<p>Github: <a href="https://github.com/deepshamenghani/">deepshamenghani</a></p>
+<p><br></p>
+<h3 id="github-repo-qr-code">Github repo qr code</h3>
+<div class="quarto-figure quarto-figure-left">
+<figure>
+<p><a href="https://bit.ly/chatbot_shiny_python"><img data-src="images/bit.ly_chatbot_shiny_python.png" class="quarto-figure quarto-figure-left" style="max-" alt="QR code to slides." height="300"></a></p>
+</figure>
 </div>
-</div>
+</div><div class="column" style="width:50%;">
+<p><img data-src="images/DeepshaMenghani.png" height="600"></p>
+</div></div>
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 

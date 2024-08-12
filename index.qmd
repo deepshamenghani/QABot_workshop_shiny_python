@@ -3,6 +3,7 @@ title: "QABot for Python Shiny"
 author: "<br><br><br><strong>Deepsha Menghani</strong><br>"
 execute: 
   echo: true
+  eval: false
 format: 
   revealjs:
     width: 1600
@@ -146,7 +147,7 @@ OPENAI_API_KEY = "sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 ::: {.fragment}
 *python file* <br>
 
-```{python eval=FALSE}
+```{python}
 #| code-line-numbers: "|1-3|4"
 import os
 import dotenv
@@ -165,7 +166,7 @@ api_key=os.getenv('OPENAI_API_KEY')
 ::: {.fragment}
 *conversationchatbot.py file* <br>
 
-```{python eval=FALSE}
+```{python}
 #| code-line-numbers: "|1|6"
 from openai import OpenAI
 import os
@@ -193,7 +194,7 @@ Conversation input consists of two parts:
 ::: {.fragment}
 *Assign a role to the chatbot* <br>
 
-```{python eval=FALSE}
+```{python}
 conversation = [{"role": "system", "content": "You are an assistant."}]
 ```
 :::
@@ -207,7 +208,7 @@ conversation = [{"role": "system", "content": "You are an assistant."}]
 ::: {.fragment}
 *Update the conversation to include the user question* <br>
 
-```{python eval=FALSE}
+```{python}
 #| code-line-numbers: "1|2|"
 inputquestion = "Where is the moon?"
 conversation.append({"role": "user", "content": inputquestion})
@@ -226,7 +227,7 @@ conversation.append({"role": "user", "content": inputquestion})
 
 *Chat completion format* <br>
 
-```{python eval=FALSE}
+```{python}
 #| code-line-numbers: "|1|2|3|"
 response = client.chat.completions.create(
         model="gpt-3.5-turbo",
@@ -238,27 +239,26 @@ response = client.chat.completions.create(
 
 ::: {.fragment}
 
-```{python eval=FALSE}
-print(f"{response}")
-```
+:::{.callout-caution title="response"}
+ChatCompletion(id='chatcmpl-9uUJ1QzCnQP7tPji48AIal9LQ8Fpe', choices=[Choice(finish_reason='stop', index=0, logprobs=None, message=ChatCompletionMessage(content="The moon is currently in the sky, but its precise location will depend on your specific location and the time of day. If you would like to know the moon's current phase or position in the sky for your location, you can use a moon tracking app or website.", refusal=None, role='assistant', function_call=None, tool_calls=None))], created=1723249891, model='gpt-3.5-turbo-0125', object='chat.completion', service_tier=None, system_fingerprint=None, usage=CompletionUsage(completion_tokens=54, prompt_tokens=21, total_tokens=75))
+:::
 
 :::
-<br>
 
-::: {.fragment}
+## Send API call with conversation context to get response
+
 
 *Pull out the response content* <br>
 
-```{python eval=FALSE}
+```{python}
 assistant_response = response.choices[0].message.content
 ```
 
-:::
 ::: {.fragment}
 
-```{python eval=FALSE}
-print(f"{assistant_response}")
-```
+:::{.callout-tip title="assistant_response"}
+"The moon is currently in the sky, but its precise location will depend on your specific location and the time of day. If you would like to know the moon's current phase or position in the sky for your location, you can use a moon tracking app or website."
+:::
 
 :::
 
@@ -267,7 +267,7 @@ print(f"{assistant_response}")
 ::: {.fragment}
 
 
-```{python eval=FALSE}
+```{python}
 #| code-line-numbers: "|1-3|5-6|8-9|11|12-13|15-19|21-22|24"
 from openai import OpenAI
 import os
@@ -299,31 +299,788 @@ def ask_question(inputquestion):
 :::
 
 ## Turn the API call into a function
+*conversationchatbot.py file* <br>
 
 ::: {.fragment}
 
-```{python eval=FALSE}
+```{python}
 ask_question("Where is the moon?")
 ```
 
 :::
 
-## Connect with OpenAI client
-
-<br>
 
 ::: {.fragment}
-*conversationchatbot.py file* <br>
 
-```{python eval=FALSE}
-#| code-line-numbers: "|1|6"
+:::{.callout-tip title="function output"}
+"The moon is currently in the sky, but its precise location will depend on your specific location and the time of day. If you would like to know the moon's current phase or position in the sky for your location, you can use a moon tracking app or website."
+:::
+
+:::
+
+
+# Let's create the Shiny application to serve this bot
+
+## The basic app commands and structure to get started
+::: columns
+::: {.column width="35%"}
+::: fragment
+*Shiny create - -help* <br><br>
+:::
+:::
+
+::: {.column width="65%"}
+::: fragment
+![](images/shinycreatehelp.png){width="100%" fig-align="center" fig-alt="Shiny python dashboard example"}
+:::
+:::
+:::
+
+## The code structure of a basic app
+
+::: columns
+::: {.column width="50%"}
+*Shiny create -t basic-app* <br>
+
+```{python}
+#| code-line-numbers: "|1|3-7|9-12|14"
+from shiny import App, render, ui
+
+app_ui = ui.page_fluid(
+    ui.panel_title("Hello Shiny!"),
+    ui.input_slider("n", "N", 0, 100, 20),
+    ui.output_text_verbatim("txt"),
+)
+
+def server(input, output, session):
+    @render.text
+    def txt():
+        return f"n*2 is {input.n() * 2}"
+
+app = App(app_ui, server)
+
+```
+:::
+
+::: {.column width="50%"}
+
+<br>
+![](images/appbasic.png){width="100%" fig-align="center" fig-alt="Shiny python dashboard example"}
+:::
+:::
+
+# Let's update the Shiny App for our QA bot
+
+## Add a title
+
+
+::: columns
+::: {.column width="50%"}
+*Shiny create -t basic-app* <br>
+
+```{python}
+#| code-line-numbers: "|1|3-9|11-14|"
+from shiny import App, render, ui
+
+app_ui = ui.page_fillable(
+    ui.page_auto(
+        # Title of the application
+        ui.h1("Shiny Web Application Chatbot")
+    )
+)
+
+def server(input, output, session):
+    @render.text
+    def txt():
+        return ""
+
+app = App(app_ui, server)
+
+```
+:::
+
+::: {.column width="50%"}
+
+<br>
+![](images/shinytitle.png){width="100%" fig-align="center" fig-alt="Shiny python dashboard example"}
+:::
+:::
+
+## Make the title pretty
+
+::: columns
+::: {.column width="50%"}
+*Shiny create -t basic-app* <br>
+
+```{python}
+#| code-line-numbers: "|5-13|"
+from shiny import App, render, ui
+
+app_ui = ui.page_fillable(
+    ui.page_auto(
+        # Title of the application
+        ui.h1("Shiny Web Application Chatbot", style="font-family: Arial, sans-serif; color: #0078B8; text-shadow: 2px 2px 4px #000000; font-size: 2.7em; text-align: center; padding: 20px;"),
+    )
+)
+
+def server(input, output, session):
+    @render.text
+    def txt():
+        return ""
+
+app = App(app_ui, server)
+
+
+```
+:::
+
+::: {.column width="50%"}
+
+<br>
+![](images/shinytitlestyled.png){width="100%" fig-align="center" fig-alt="Shiny python dashboard example"}
+:::
+:::
+
+## Add a description
+
+::: columns
+::: {.column width="50%"}
+*Shiny create -t basic-app* <br>
+
+```{python}
+#| code-line-numbers: "|5-13|"
+from shiny import App, render, ui
+
+app_ui = ui.page_fillable(
+    ui.page_auto(
+        # Title of the application
+        ui.h1("Shiny Web Application Chatbot", style="font-family: Arial, sans-serif; color: #0078B8; text-shadow: 2px 2px 4px #000000; font-size: 2.7em; text-align: center; padding: 20px;"),
+        # Description of the application
+        ui.markdown("This application allows you to ask questions and get answers using a conversational AI model."),
+    )
+)
+
+def server(input, output, session):
+    @render.text
+    def txt():
+        return ""
+
+app = App(app_ui, server)
+```
+:::
+
+::: {.column width="50%"}
+
+<br>
+![](images/shinydesc){width="100%" fig-align="center" fig-alt="Shiny python dashboard example"}
+:::
+:::
+
+
+## Add a box for user to input question
+
+::: columns
+::: {.column width="50%"}
+
+```{python}
+#| code-line-numbers: "|5-13|"
+from shiny import App, render, ui
+
+app_ui = ui.page_fillable(
+    ui.page_auto(
+        # Title of the application
+        ui.h1("Shiny Web Application Chatbot", style="font-family: Arial, sans-serif; color: #0078B8; text-shadow: 2px 2px 4px #000000; font-size: 2.7em; text-align: center; padding: 20px;"),
+        # Description of the application
+        ui.markdown("This application allows you to ask questions and get answers using a conversational AI model."),
+        # Text input for user to enter their question
+        ui.input_text("question_input", "Please enter your question and press 'Send':", width="100%"),
+    )
+)
+
+def server(input, output, session):
+    @render.text
+    def txt():
+        return ""
+
+app = App(app_ui, server)
+```
+:::
+
+::: {.column width="50%"}
+
+<br>
+![](images/shinyuserinput.png){width="100%" fig-align="center" fig-alt="Shiny python dashboard example"}
+:::
+:::
+
+
+
+## Add a send button
+
+::: columns
+::: {.column width="50%"}
+
+```{python}
+#| code-line-numbers: "|5-13|"
+from shiny import App, render, ui
+
+app_ui = ui.page_fillable(
+    ui.page_auto(
+        # Title of the application
+        ui.h1("Shiny Web Application Chatbot", style="font-family: Arial, sans-serif; color: #0078B8; text-shadow: 2px 2px 4px #000000; font-size: 2.7em; text-align: center; padding: 20px;"),
+        # Description of the application
+        ui.markdown("This application allows you to ask questions and get answers using a conversational AI model."),
+        # Text input for user to enter their question
+        ui.input_text("question_input", "Please enter your question and press 'Send':", width="100%"),
+        # Button to send the question
+        ui.input_action_button("send_button", "Send", class_="btn-primary"),    
+    )
+)
+
+def server(input, output, session):
+    @render.text
+    def txt():
+        return ""
+
+app = App(app_ui, server)
+```
+:::
+
+::: {.column width="50%"}
+
+<br>
+![](images/shinysendbutton.png){width="100%" fig-align="center" fig-alt="Shiny python dashboard example"}
+:::
+:::
+
+## Add an area for the answer to appear
+
+::: columns
+::: {.column width="50%"}
+
+```{python}
+#| code-line-numbers: "|5-13|"
+from shiny import App, render, ui
+
+app_ui = ui.page_fillable(
+    ui.page_auto(
+        # Title of the application
+        ui.h1("Shiny Web Application Chatbot", style="font-family: Arial, sans-serif; color: #0078B8; text-shadow: 2px 2px 4px #000000; font-size: 2.7em; text-align: center; padding: 20px;"),
+        # Description of the application
+        ui.markdown("This application allows you to ask questions and get answers using a conversational AI model."),
+        # Text input for user to enter their question
+        ui.input_text("question_input", "Please enter your question and press 'Send':", width="100%"),
+        # Button to send the question
+        ui.input_action_button("send_button", "Send", class_="btn-primary"), 
+        # Card to display the answer
+        ui.card(
+            ui.output_text("answer_output", inline=True),
+            style="white-space: pre-wrap; width: 100%; margin: 3; padding: 10px;"
+        )   
+    )
+)
+
+def server(input, output, session):
+    @render.text
+    def txt():
+        return ""
+
+app = App(app_ui, server)
+```
+:::
+
+::: {.column width="50%"}
+
+<br>
+![](images/shinyanswerarea.png){width="100%" fig-align="center" fig-alt="Shiny python dashboard example"}
+:::
+:::
+
+
+## Update the server to get response from OpenAI
+
+::: columns
+::: {.column width="50%"}
+
+```{python}
+#| code-line-numbers: "|5-13|"
+from shiny import App, render, ui, reactive
+import conversationchatbot  
+
+app_ui = ui.page_fillable(
+    ui.page_auto(
+        # Title of the application
+        ui.h1("Shiny Web Application Chatbot", style="font-family: Arial, sans-serif; color: #0078B8; text-shadow: 2px 2px 4px #000000; font-size: 2.7em; text-align: center; padding: 20px;"),
+        # Description of the application
+        ui.markdown("This application allows you to ask questions and get answers using a conversational AI model."),
+        # Text input for user to enter their question
+        ui.input_text("question_input", "Please enter your question and press 'Send':", width="100%"),
+        # Button to send the question
+        ui.input_action_button("send_button", "Send", class_="btn-primary"), 
+        # Card to display the answer
+        ui.card(
+            ui.output_text("answer_output", inline=True),
+            style="white-space: pre-wrap; width: 100%; margin: 3; padding: 10px;"
+        )   
+    )
+)
+
+def server(input, output, session):
+    # Define the output for the answer
+    @output
+    @render.text
+    @reactive.event(input.send_button, ignore_none=False)
+    def answer_output():
+        # Get the user's question from the input
+        question = input.question_input()
+        if question:
+            # Get the response from the conversational AI model using the provided API key
+            response = conversationchatbot.ask_question(question)
+            return response
+        else:
+            # Return placeholder text if no question is entered
+            return "....."
+
+app = App(app_ui, server)
+
+```
+:::
+
+::: {.column width="50%"}
+
+<br>
+![](images/shinyquestionanswer_gif.gif){width="100%" fig-align="center" fig-alt="Shiny python dashboard example"}
+:::
+:::
+
+# The chatbot is ready and served through our shiny application. You did it!
+
+# Now, let's have the user input their API key in the Shiny dashboard
+
+## Update conversation chatbot function
+
+### Original function with user question input as parameter
+
+::: {.fragment}
+
+
+```{python}
+#| code-line-numbers: "|1-3|5-6|8-9|11|12-13|15-19|21-22|24"
 from openai import OpenAI
 import os
 import dotenv
 
 dotenv.load_dotenv()
-client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
+client = OpenAI(api_key=os.getenv('OPENAI_API'))
+
+# Create a role instruction for the bot
+conversation = [{"role": "system", "content": "You are an assistant."}]
+
+def ask_question(inputquestion):
+    # Append the user's question to the conversation array
+    conversation.append({"role": "user","content": inputquestion})
+
+    # Request gpt-3.5-turbo for chat completion or a response
+    response = client.chat.completions.create(
+        model="gpt-3.5-turbo",
+        messages=conversation
+    )
+
+    # Access the response from the API to display it
+    assistant_response = response.choices[0].message.content
+    
+    return assistant_response
+
 ```
 
+:::
+
+## Update conversation chatbot function
+
+### Add API key as input parameter to the function
+
+::: {.fragment}
+
+
+```{python}
+#| code-line-numbers: "|1-3|5-6|8-9|11|12-13|15-19|21-22|24"
+from openai import OpenAI
+import os
+import dotenv
+
+dotenv.load_dotenv()
+
+# Create an instruction for the bot
+conversation = [{"role": "system", "content": "You are an assistant."}]
+
+def ask_question(inputquestion, api_key):
+    # Initialize the OpenAI client with the provided API key
+    client = OpenAI(api_key=api_key)
+
+    # Append the user's question to the conversation array
+    conversation.append({"role": "user", "content": inputquestion})
+
+    # Request gpt-3.5-turbo for chat completion or a response
+    response = client.chat.completions.create(
+        model="gpt-3.5-turbo",
+        messages=conversation
+    )
+
+    # Access the response from the API to display it
+    assistant_response = response.choices[0].message.content
+
+    return assistant_response
+
+```
+
+:::
+
+## Update conversation chatbot function
+
+### Test the function
+
+::: {.fragment}
+
+```{python}
+ask_question(
+    "Where is the moon?"
+)
+```
+:::
+
+
+::: {.fragment}
+
+:::{.callout-warning title="Error"}
+TypeError: ask_question() missing 1 required positional argument: 'api_key'
+:::
+
+:::
+
+::: {.fragment}
+
+```{python}
+ask_question(
+    "Where is the moon?", 
+    os.getenv('OPENAI_API_KEY')
+)
+```
+:::
+
+
+::: {.fragment}
+
+:::{.callout-tip title="function output"}
+"The moon is currently in the sky, orbiting around Earth. Its exact position in the sky will depend on your location and the current time. If you are looking for more specific information about the moon's position, you can use a stargazing app or website to track its location in real-time."
+:::
+
+:::
+
+
+## Update the app for API key input
+
+::: columns
+::: {.column width="50%"}
+
+```{python}
+#| code-line-numbers: "|5-13|"
+from shiny import App, render, ui, reactive
+import conversationchatbot  
+
+app_ui = ui.page_fillable(
+    ui.page_auto(
+        # Title of the application
+        ui.h1("Shiny Web Application Chatbot", style="font-family: Arial, sans-serif; color: #0078B8; text-shadow: 2px 2px 4px #000000; font-size: 2.7em; text-align: center; padding: 20px;"),
+        # Description of the application
+        ui.markdown("This application allows you to ask questions and get answers using a conversational AI model."),
+        # Click the button to add the API key
+        ui.card(ui.input_action_button("apikey", "Enter OpenAI API Key to get started", class_="btn-warning")), 
+        # Text input for user to enter their question
+        ui.input_text("question_input", "Please enter your question and press 'Send':", width="100%"),
+        # Button to send the question
+        ui.input_action_button("send_button", "Send", class_="btn-primary"), 
+        # Card to display the answer
+        ui.card(
+            ui.output_text("answer_output", inline=True),
+            style="white-space: pre-wrap; width: 100%; margin: 3; padding: 10px;"
+        )   
+    )
+)
+
+def server(input, output, session):
+    # Define the output for the answer
+    @output
+    @render.text
+    @reactive.event(input.send_button, ignore_none=False)
+    def answer_output():
+        # Get the user's question from the input
+        question = input.question_input()
+        if question:
+            # Get the response from the conversational AI model using the provided API key
+            response = conversationchatbot.ask_question(question)
+            return response
+        else:
+            # Return placeholder text if no question is entered
+            return "....."
+
+app = App(app_ui, server)
+
+```
+:::
+
+::: {.column width="50%"}
+
+<br>
+![](images/shinyenterapikeybutton.png){width="100%" fig-align="center" fig-alt="Shiny python dashboard example"}
+:::
+:::
+
+
+## Update the app for API key input
+
+::: columns
+::: {.column width="50%"}
+
+```{python}
+#| code-line-numbers: "|5-13|"
+from shiny import App, render, ui, reactive
+import conversationchatbot  
+
+app_ui = ui.page_fillable(
+    ui.page_auto(
+        # Title of the application
+        ui.h1("Shiny Web Application Chatbot", style="font-family: Arial, sans-serif; color: #0078B8; text-shadow: 2px 2px 4px #000000; font-size: 2.7em; text-align: center; padding: 20px;"),
+        # Description of the application
+        ui.markdown("This application allows you to ask questions and get answers using a conversational AI model."),
+        # Click the button to add the API key
+        ui.card(ui.input_action_button("apikey", "Enter OpenAI API Key to get started", class_="btn-warning")), 
+        # Text input for user to enter their question
+        ui.input_text("question_input", "Please enter your question and press 'Send':", width="100%"),
+        # Button to send the question
+        ui.input_action_button("send_button", "Send", class_="btn-primary"), 
+        # Card to display the answer
+        ui.card(
+            ui.output_text("answer_output", inline=True),
+            style="white-space: pre-wrap; width: 100%; margin: 3; padding: 10px;"
+        )   
+    )
+)
+
+def server(input, output, session):
+    # Define the output for the answer
+    @output
+    @render.text
+    @reactive.event(input.send_button, ignore_none=False)
+    def answer_output():
+        # Get the user's question from the input
+        question = input.question_input()
+        if question:
+            # Get the response from the conversational AI model using the provided API key
+            response = conversationchatbot.ask_question(question)
+            return response
+        else:
+            # Return placeholder text if no question is entered
+            return "....."
+
+app = App(app_ui, server)
+
+
+```
+:::
+
+::: {.column width="50%"}
+
+<br>
+![](images/shinyapikeymissing.png){width="100%" fig-align="center" fig-alt="Shiny python dashboard example"}
+:::
+:::
+
+## Clean up the API key error
+
+::: columns
+::: {.column width="50%"}
+
+```{python}
+#| code-line-numbers: "|5-13|"
+from shiny import App, render, ui, reactive
+import conversationchatbot  
+
+app_ui = ui.page_fillable(
+    ui.page_auto(
+        # Title of the application
+        ui.h1("Shiny Web Application Chatbot", style="font-family: Arial, sans-serif; color: #0078B8; text-shadow: 2px 2px 4px #000000; font-size: 2.7em; text-align: center; padding: 20px;"),
+        # Description of the application
+        ui.markdown("This application allows you to ask questions and get answers using a conversational AI model."),
+        # Click the button to add the API key
+        ui.card(ui.input_action_button("apikey", "Enter OpenAI API Key to get started", class_="btn-warning")), 
+        # Text input for user to enter their question
+        ui.input_text("question_input", "Please enter your question and press 'Send':", width="100%"),
+        # Button to send the question
+        ui.input_action_button("send_button", "Send", class_="btn-primary"), 
+        # Card to display the answer
+        ui.card(
+            ui.output_text("answer_output", inline=True),
+            style="white-space: pre-wrap; width: 100%; margin: 3; padding: 10px;"
+        )   
+    )
+)
+
+def server(input, output, session):
+    # Define the output for the answer
+    @output
+    @render.text
+    @reactive.event(input.send_button, ignore_none=False)
+    def answer_output():
+        # Get the user's question from the input
+        question = input.question_input()
+        if question:
+            # Check if the API key has been provided
+            if not input.apikey(): 
+                return "Please input your OpenAI API key"
+            else: 
+                # Get the response from the conversational AI model using the provided API key
+                response = conversationchatbot.ask_question(question, api_key=input.password())
+                return response
+        else:
+            # Return placeholder text if no question is entered
+            return "....."
+
+app = App(app_ui, server)
+
+```
+:::
+
+::: {.column width="50%"}
+
+<br>
+![](images/shinyapikeymissingclean.png){width="100%" fig-align="center" fig-alt="Shiny python dashboard example"}
+:::
+:::
+
+
+## Create a modal for user to input API key
+
+::: columns
+::: {.column width="50%"}
+
+```{python}
+#| code-line-numbers: "|5-13|"
+from shiny import App, render, ui, reactive
+import conversationchatbot  
+
+app_ui = ui.page_fillable(
+    ui.page_auto(
+        # Title of the application
+        ui.h1("Shiny Web Application Chatbot", style="font-family: Arial, sans-serif; color: #0078B8; text-shadow: 2px 2px 4px #000000; font-size: 2.7em; text-align: center; padding: 20px;"),
+        # Description of the application
+        ui.markdown("This application allows you to ask questions and get answers using a conversational AI model."),
+        # Click the button to add the API key
+        ui.card(ui.input_action_button("apikey", "Enter OpenAI API Key to get started", class_="btn-warning")), 
+        # Text input for user to enter their question
+        ui.input_text("question_input", "Please enter your question and press 'Send':", width="100%"),
+        # Button to send the question
+        ui.input_action_button("send_button", "Send", class_="btn-primary"), 
+        # Card to display the answer
+        ui.card(
+            ui.output_text("answer_output", inline=True),
+            style="white-space: pre-wrap; width: 100%; margin: 3; padding: 10px;"
+        )   
+    )
+)
+
+def server(input, output, session):
+    # Display a modal for API key input when the 'apikey' input is triggered
+    @reactive.effect
+    @reactive.event(input.apikey)
+    def _():
+        m = ui.modal(  
+            # Input field for the OpenAI API key
+            ui.input_password("password", "OpenAI API key:"),
+            # Button to connect to OpenAI
+            ui.input_action_button("connect", "Connect to OpenAI"),
+            easy_close=True,  
+            footer=None,  
+        )  
+        ui.modal_show(m)  # Show the modal
+        
+    # Remove the modal when the 'connect' button is pressed
+    @reactive.effect  
+    @reactive.event(input.connect)  
+    def __():  
+        ui.modal_remove()  # Hide the modal
+    
+    # Define the output for the answer
+    @output
+    @render.text
+    @reactive.event(input.send_button, ignore_none=False)
+    def answer_output():
+        # Get the user's question from the input
+        question = input.question_input()
+        if question:
+            # Check if the API key has been provided
+            if not input.apikey(): 
+                return "Please input your OpenAI API key"
+            else: 
+                # Get the response from the conversational AI model using the provided API key
+                response = conversationchatbot.ask_question(question, api_key=input.password())
+                return response
+        else:
+            # Return placeholder text if no question is entered
+            return "....."
+
+app = App(app_ui, server)
+
+```
+:::
+
+::: {.column width="50%"}
+
+<br>
+![](images/shinyapikeymodalexit_gif.gif){width="100%" fig-align="center" fig-alt="Shiny python dashboard example"}
+:::
+:::
+
+## I know that was a lot of information!!!
+
+<br>
+
+![](images/taylorscreaming.gif){width="100%" fig-align="center" fig-alt="TSwift screaming"}
+
+# And there is more you can do with chatbots in Shiny
+
+# Such as make it answer questions using your own dashboard documentation
+
+## Resources
+
+-   **Everything related to this presentation**
+    -   [Short Link to presentation - https://bit.ly/shinyforpythonslides](https://bit.ly/shinyforpythonslides)
+    -   [Shiny code](https://www.apreshill.com/blog/2022-04-we-dont-talk-about-quarto/)
+    -   ["Who is the Goodest Doggy" App]()
+-   **Additional Peeps, resources and events to follow**
+    -   [Gordon Shotwell](https://www.linkedin.com/in/gshotwell/)
+    -   [Upcoming Shiny Express webinar by Winston Chang](https://www.linkedin.com/posts/rachaeldempsey_were-so-excited-to-share-a-quicker-and-simpler-activity-7166453499340259328-__Me?utm_source=share&utm_medium=member_desktop)
+    -   [Shiny for python documentation](https://shiny.posit.co/py/docs/overview.html)
+    -   [Deploying Shiny for Python application](https://shiny.posit.co/py/docs/deploy.html)
+
+## Let's connect
+
+::: columns
+::: {.column width="50%"}
+
+Mastodon: [\@deepsha](https://fosstodon.org/@deepsha)
+
+LinkedIn: [deepshamenghani](https://bit.ly/deepshamenghani)
+
+Github: [deepshamenghani](https://github.com/deepshamenghani/)
+
+<br> 
+
+### Github repo qr code
+[![](images/bit.ly_chatbot_shiny_python.png){style="max-" fig-alt="QR code to slides." fig-align="left" height="300"}](https://bit.ly/chatbot_shiny_python)
+:::
+
+::: {.column width="50%"}
+![](images/DeepshaMenghani.png){height="600"}
+:::
 :::
 

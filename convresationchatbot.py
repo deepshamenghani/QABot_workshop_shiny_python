@@ -21,6 +21,6 @@ def ask_question(inputquestion):
     # Access the response from the API to display it
     assistant_response = response.choices[0].message.content
     
-    return assistant_response
+    return response
 
 ask_question("Where is the moon?")
