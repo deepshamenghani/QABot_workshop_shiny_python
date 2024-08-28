@@ -1113,16 +1113,7 @@ flowchart LR
 
 ```
 
-::: {#fig-simple}
 
-```{dot}
-graph {
-  A -- B
-}
-```
-
-This is a simple graphviz graph
-:::
 
 ## Resources
 
