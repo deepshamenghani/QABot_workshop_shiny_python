@@ -21,7 +21,7 @@ from: markdown+emoji
 
 ::::: columns
 ::: {.column width="50%"}
-Data Scientist manager at Microsoft.....
+Data Science manager at Microsoft.....
 
 ![](images/DeepshaMenghani.png){width="75%" fig-align="center" fig-alt="Self portrait."}
 :::
@@ -34,7 +34,7 @@ Data Scientist manager at Microsoft.....
 
 ::::: columns
 ::: {.column width="50%"}
-DS manager at Microsoft.....
+Data Science manager at Microsoft.....
 
 ![](images/DeepshaMenghani.png){width="75%" fig-align="center" fig-alt="Self portrait."}
 :::
@@ -202,6 +202,11 @@ client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
 ## Build the conversation input for OpenAI call
 
 ::: {.fragment}
+![](images/openaisendreceive.png){width="70%" fig-align="left" fig-alt="guard it"}
+
+:::
+
+::: {.fragment}
 ::: {.incremental}
 Conversation input consists of: 
 
@@ -212,19 +217,13 @@ Conversation input consists of:
 :::
 :::
 
-::: {.fragment}
-![](images/openaisendreceive.png){width="100%" fig-align="left" fig-alt="guard it"}
 
-:::
 
 
 
 ## Build the conversation input for OpenAI call
 
-::: {.fragment}
 ![](images/openaisendreceive.png){width="70%" fig-align="left" fig-alt="guard it"}
-
-:::
 
 ::: {.fragment}
 
@@ -730,7 +729,6 @@ def ask_question(inputquestion):
 :::
 
 ## Update conversation chatbot function
-<br>
 
 
 ### Add API key as input parameter to the function
@@ -770,7 +768,6 @@ def ask_question(inputquestion, api_key):
 
 
 ## Update conversation chatbot function
-<br>
 
 ### Test the function
 
@@ -872,66 +869,6 @@ app = App(app_ui, server)
 :::
 
 
-## Update the app for API key input
-
-::: columns
-::: {.column width="50%"}
-<br>
-
-```{python}
-#| code-line-numbers: "11-12"
-from shiny import App, render, ui, reactive
-import conversationchatbot  
-
-app_ui = ui.page_fillable(
-    ui.page_auto(
-        # Title of the application
-        ui.h1("Shiny Web Application Chatbot", style="font-family: Arial, sans-serif; color: #0078B8; text-shadow: 2px 2px 4px #000000; font-size: 2.7em; text-align: center; padding: 20px;"),
-        # Description of the application
-        ui.markdown("This application allows you to ask questions and get answers using a conversational AI model."),
-        # Click the button to add the API key
-        ui.card(ui.input_action_button("apikey", "Enter OpenAI API Key to get started", class_="btn-warning")), 
-        # Text input for user to enter their question
-        ui.input_text("question_input", "Please enter your question and press 'Send':", width="100%"),
-        # Button to send the question
-        ui.input_action_button("send_button", "Send", class_="btn-primary"), 
-        # Card to display the answer
-        ui.card(
-            ui.output_text("answer_output", inline=True),
-            style="white-space: pre-wrap; width: 100%; margin: 3; padding: 10px;"
-        )   
-    )
-)
-
-def server(input, output, session):
-    # Define the output for the answer
-    @output
-    @render.text
-    @reactive.event(input.send_button, ignore_none=False)
-    def answer_output():
-        # Get the user's question from the input
-        question = input.question_input()
-        if question:
-            # Get the response from the conversational AI model using the provided API key
-            response = conversationchatbot.ask_question(question)
-            return response
-        else:
-            # Return placeholder text if no question is entered
-            return "....."
-
-app = App(app_ui, server)
-
-
-```
-:::
-
-::: {.column width="50%"}
-
-<br>
-![](images/shinyapikeymissing.png){width="100%" fig-align="center" fig-alt="Shiny python dashboard example"}
-:::
-:::
-
 ## Clean up the API key error
 
 ::: columns
@@ -939,7 +876,7 @@ app = App(app_ui, server)
 <br>
 
 ```{python}
-#| code-line-numbers: "|18|29|29-31|29-39|29-42"
+#| code-line-numbers: "10-11|18|29|29-31|29-39|29-42"
 from shiny import App, render, ui, reactive
 import conversationchatbot  
 
@@ -1087,31 +1024,29 @@ app = App(app_ui, server)
 
 # There is more you can do with chatbots to make them relevant to your Shiny app documentation
 
-# Retrieval Augmented Generation (RAG)
+## Generic bot
+<br>
 
-## Diagram try
+::: incremental
+1.  Prompt
+2.  Response
+:::
 
-```{mermaid}
-%%| label: fig-mermaid
-%%| fig-width: 6
-%%| fig-cap: |
-%%|   How Quarto orchestrates rendering of documents: start with 
-%%|   a qmd file, use the Knitr or Jupyter engine to perform the 
-%%|   computations and convert it to an md file, then use Pandoc 
-%%|   to convert to various file formats including HTML, PDF, 
-%%|   and Word.
-flowchart LR
-  A[qmd] --> B(Knitr)
-  A[qmd] --> C(Jupyter)
-  B(Knitr) --> D[md]
-  C(Jupyter) --> D[md]
-  D[md] --> E(pandoc)
-  E(pandoc) --> F(HTML)
-  E(pandoc) --> G(PDF)
-  E(pandoc) --> H(Word)
-  E(pandoc) --> I{and more}
 
-```
+## Retrieval Augmented Generation (RAG) bot
+<br>
+
+1.  Prompt
+2.  Data
+3.  Response
+
+::: {.fragment}
+
+:::{.callout-tip title="Blog link"}
+[Build a Superhero Facts RAG QA Bot](https://medium.com/data-science-at-microsoft/how-i-built-a-superhero-facts-rag-qa-bot-using-langchain-qdrant-and-openai-20a04202c6b1?sk=01babb6394b331bd07ac26b2de9cf5b5)
+:::
+
+:::
 
 
 
