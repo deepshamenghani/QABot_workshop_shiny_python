@@ -1054,11 +1054,13 @@ app = App(app_ui, server)
 
 -   **Everything related to this presentation**
     -   [Short Link to presentation - https://bit.ly/shinyforpythonslides](https://bit.ly/shinyforpythonslides)
-    -   [Shiny code](https://www.apreshill.com/blog/2022-04-we-dont-talk-about-quarto/)
-    -   ["Who is the Goodest Doggy" App]()
+    -   [Shiny code](https://github.com/deepshamenghani/chatbot_shiny_python)
+-   **Supporting blogs**
+    -   [Superhero facts RAG Q&A bot](https://medium.com/data-science-at-microsoft/how-i-built-a-superhero-facts-rag-qa-bot-using-langchain-qdrant-and-openai-20a04202c6b1?sk=01babb6394b331bd07ac26b2de9cf5b5)
+    -   [Incorporate a chatbot to Shiny for Python](https://medium.com/towards-data-science/incorporate-an-llm-chatbot-into-your-web-application-with-openai-python-and-shiny-fe78673a5d26?sk=06086c4c352edbcad0137a35dfef52fa)
 -   **Additional Peeps, resources and events to follow**
-    -   [Gordon Shotwell](https://www.linkedin.com/in/gshotwell/)
-    -   [Upcoming Shiny Express webinar by Winston Chang](https://www.linkedin.com/posts/rachaeldempsey_were-so-excited-to-share-a-quicker-and-simpler-activity-7166453499340259328-__Me?utm_source=share&utm_medium=member_desktop)
+    -   [Shiny x AI - Joe Cheng](https://posit.co/conference/)
+    -   [An assistant to learn Shiny and build Shiny apps - Winston Chang](https://posit.co/conference/)
     -   [Shiny for python documentation](https://shiny.posit.co/py/docs/overview.html)
     -   [Deploying Shiny for Python application](https://shiny.posit.co/py/docs/deploy.html)
 
