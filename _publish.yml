@@ -1,0 +1,8 @@
+- source: project
+  quarto-pub:
+    - id: 6a9a3979-7b9c-4d98-a318-7f2fdcb276c8
+      url: 'https://deepshamenghani.quarto.pub/your-project-title'
+    - id: 69b1ed21-1cb6-4d15-90a4-13a1d37f2eeb
+      url: 'https://deepshamenghani.quarto.pub/chatbot-shinypy'
+    - id: 1da16ca6-e51d-44c6-a042-462952c19fed
+      url: 'https://deepshamenghani.quarto.pub/chatbotshinypy'
